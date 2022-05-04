@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, HomeComponent],
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule,
     CommonModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
