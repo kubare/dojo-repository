@@ -1,20 +1,2 @@
-<div class="header">
-  <div class="btn-list">
-    <ng-container *ngFor="let s of rickMortySeasons">
-      <button (click)="chooseOption(s.id)" class="btn-rick"><b>{{s.season}}</b><br> Odcinki - {{s.results.length}}</button>
-    </ng-container>
-  </div>
-</div>
-
-
-<div class="main">
-  <ng-container *ngIf="season">
-    <h2>{{season.season}}</h2>
-    <div class="info">
-    <ng-container *ngFor="let x of season.results">
-      <p>{{x.name}}</p><span> - </span>
-      <p><br>{{x.air_date}}</p><br>
-    </ng-container>
-  </div>
-  </ng-container>
-</div>
+<p>works</p>
+<router-outlet></router-outlet>
