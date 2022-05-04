@@ -1,0 +1,18 @@
+.btn-list {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-top: 50px;
+}
+
+.btn-rick {
+  width: 120px;
+  height: 70px;
+  border: 1px solid lightgray;
+  background: yellow;
+  border-radius: 5px;
+}
+
+.btn-rick:hover {
+  background-color: yellowgreen;
+}

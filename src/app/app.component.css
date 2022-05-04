@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+* {
+  font-family: "Lato", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.header {
+  padding-bottom: 60px;
+  background-image: url("https://i.pinimg.com/originals/5b/66/7d/5b667d877265b876259a1633403b0ec9.jpg");
+  background-position: center;
+  box-shadow: 0px 0px 12px -4px rgba(0, 0, 0, 1);
+}
+
+.btn-list {
+  display: flex;
+  justify-content: space-around;
+  padding-left: 10px;
+  padding-top: 50px;
+}
+
+.btn-rick {
+  width: 120px;
+  height: 70px;
+  border: 1px solid black;
+  background: greenyellow;
+  border-radius: 5px;
+}
+
+.btn-rick:hover {
+  background-color: green;
+}
+
+.info p {
+  display: inline-block;
+}
+
+.main {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.info {
+  font-size: 14px;
+}

@@ -1,14 +1,20 @@
+<div class="header">
+  <div class="btn-list">
+    <ng-container *ngFor="let s of rickMortySeasons">
+      <button (click)="chooseOption(s.id)" class="btn-rick"><b>{{s.season}}</b><br> Odcinki - {{s.results.length}}</button>
+    </ng-container>
+  </div>
+</div>
 
 
-
-  <!-- <label for="joke">Choose a category joke:</label>
-  <select [formControl]="chooseOption" (change)="chooseCategory()">
-    <option value="animal">animal</option>
-    <option value="career">career</option>
-    <option value="celebrity">celebrity</option>
-    <option value="dev">dev</option>
-  </select> -->
-
-
-
-{{information}}
+<div class="main">
+  <ng-container *ngIf="season">
+    <h2>{{season.season}}</h2>
+    <div class="info">
+    <ng-container *ngFor="let x of season.results">
+      <p>{{x.name}}</p><span> - </span>
+      <p><br>{{x.air_date}}</p><br>
+    </ng-container>
+  </div>
+  </ng-container>
+</div>

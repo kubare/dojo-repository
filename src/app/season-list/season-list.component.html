@@ -1,0 +1,12 @@
+
+<div class="container" *ngIf="seasonDetails | async as episodes">
+  <div class="main-container">
+    <div class="card">
+      <ng-container *ngFor="let test of episodes.results">
+        <h3 id="title">{{ test.name }}</h3><br>
+        <h5>{{ test.air_date }}</h5><br>
+      </ng-container>
+  </div>
+</div>
+</div>
+

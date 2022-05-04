@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { ApiResponse } from './navbar/navbar.component';
 
 @Injectable({
   providedIn: 'root',
@@ -7,20 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  public getInformation() {
-    return this.http.get<any>('https://api.chucknorris.io/jokes/random');
-    // ,
-    // {
-    //   // headers: {
-    //   //   'Content-Type': 'text/plain;charset=UTF-8',
-    //   // },
-    //   responseType: 'text' as any,
-    // });
+  public getSeasons(): Observable<ApiResponse[]> {
+    return this.http.get<ApiResponse[]>('http://localhost:3000/episodes');
   }
 
-  public chooseCategory(enteredText: string) {
-    return this.http.get<any>(
-      `https://api.chucknorris.io/jokes/random?category=${enteredText}`
-    );
+  public getSeasonById(id: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>('http://localhost:3000/episodes/' + id);
   }
 }
