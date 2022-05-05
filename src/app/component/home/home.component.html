@@ -1,3 +1,10 @@
 <mat-toolbar color="primary">
   <span>Ice Cream</span>
+  <ng-container *ngIf="auth.currentUser$ | async as user">
+    <button mat-button (click)="logout()">
+      Logout
+    </button>
+  </ng-container>
 </mat-toolbar>
+
+<h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
