@@ -1,1 +1,29 @@
-<p>units works!</p>
+<mat-form-field class="example-full-width" >
+  <mat-label>Ilość kg</mat-label>
+  <input matInput type="text" [formControl]="unitInput" />
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addIceCream()">Dodaj</button>
+
+<table *ngIf="units$ | async as unit" mat-table [dataSource]="unit" class="mat-elevation-z8">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="unit">
+    <th mat-header-cell *matHeaderCellDef> Ilość </th>
+    <td mat-cell *matCellDef="let element"> {{element.value}} kg</td>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Usuń </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="example-button-container">
+      <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -9,16 +9,13 @@ import { IceCreamService } from './ice-cream.service';
   styleUrls: ['./ice-creams.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IceCreamsComponent implements OnInit {
+export class IceCreamsComponent {
   iceCreamInput = new FormControl('');
+
   displayedColumns: string[] = ['name', 'actions'];
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
 
   constructor(private iceCreamService: IceCreamService) {}
-
-  ngOnInit(): void {
-    console.log(this.iceCreams$);
-  }
 
   addIceCream() {
     this.iceCreamService.createIceCreamProduct(this.iceCreamInput.value);
