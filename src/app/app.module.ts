@@ -27,6 +27,9 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IceCreamsComponent } from './component/admin/ice-creams/ice-creams.component';
 import { UnitsComponent } from './component/admin/units/units.component';
+import { UserListComponent } from './component/admin/user-list/user-list.component';
+import { IceCreamsUserComponent } from './component/home/ice-creams-user/ice-creams-user.component';
+import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/fav-ice-creams-user.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { UnitsComponent } from './component/admin/units/units.component';
     AdminComponent,
     IceCreamsComponent,
     UnitsComponent,
+    UserListComponent,
+    IceCreamsUserComponent,
+    FavIceCreamsUserComponent,
   ],
   imports: [
     BrowserModule,

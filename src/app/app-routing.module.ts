@@ -13,6 +13,9 @@ import { AdminGuard } from './auth/guards/admin.guard';
 import { IceCreamsComponent } from './component/admin/ice-creams/ice-creams.component';
 import { UnitsComponent } from './component/admin/units/units.component';
 import { UserGuard } from './auth/guards/user.guard';
+import { UserListComponent } from './component/admin/user-list/user-list.component';
+import { IceCreamsUserComponent } from './component/home/ice-creams-user/ice-creams-user.component';
+import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/fav-ice-creams-user.component';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['home']);
@@ -28,6 +31,10 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     ...canActivate(redirectToLogin),
+    children: [
+      { path: 'ice-cream-list', component: IceCreamsUserComponent },
+      { path: 'fav-list', component: FavIceCreamsUserComponent },
+    ],
   },
   {
     path: 'admin',
@@ -36,6 +43,7 @@ const routes: Routes = [
     children: [
       { path: 'ice-creams', component: IceCreamsComponent },
       { path: 'units', component: UnitsComponent },
+      { path: 'users', component: UserListComponent },
     ],
   },
 ];
