@@ -14,6 +14,7 @@ import { AppState } from 'src/app/store/app.state';
 })
 export class HomeComponent implements OnInit {
   user$ = this.auth.currentUser$;
+  userRole$ = this.loginService.getUserRole();
   roleUser: any;
 
   constructor(

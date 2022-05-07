@@ -7,15 +7,17 @@
   </ng-container>
 </mat-toolbar>
 
-<h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
 
-<div *ngIf="roleUser === 'admin'; else userDashboard">
-  <p>admin dashboard</p>
-</div>
-
+<ng-container *ngIf="userRole$ | async as userRole">
+  {{userRole}}
+  <div *ngIf="userRole === 'admin'; else userDashboard">
+  <app-admin></app-admin>
+  </div>
+</ng-container>
 
 <ng-template #userDashboard>
   user dashboard
+  <h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
 </ng-template>
 
 <button (click)="moveToAdmin()">Move</button>

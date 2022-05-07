@@ -10,6 +10,9 @@ import {
 } from '@angular/fire/compat/auth-guard';
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminGuard } from './auth/guards/admin.guard';
+import { IceCreamsComponent } from './component/admin/ice-creams/ice-creams.component';
+import { UnitsComponent } from './component/admin/units/units.component';
+import { UserGuard } from './auth/guards/user.guard';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['home']);
@@ -29,7 +32,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
+    children: [
+      { path: 'ice-creams', component: IceCreamsComponent },
+      { path: 'units', component: UnitsComponent },
+    ],
   },
 ];
 

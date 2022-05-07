@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,9 +25,18 @@ import { userReducer } from './store/user/user.reducer';
 import { authReducer } from './store/auth/auth.reducer';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { IceCreamsComponent } from './component/admin/ice-creams/ice-creams.component';
+import { UnitsComponent } from './component/admin/units/units.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent, AdminComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    AdminComponent,
+    IceCreamsComponent,
+    UnitsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -39,6 +49,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AngularFirestoreModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

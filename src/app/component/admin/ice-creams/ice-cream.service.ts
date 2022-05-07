@@ -13,15 +13,15 @@ export class IceCreamService {
   }
 
   getIceCreamsList() {
-    return this.afs.collection('ice-creams').snapshotChanges();
+    return this.afs.collection('ice-creams').valueChanges();
   }
 
-  createIceCreamProduct(iceCream: IceCream) {
-    return this.afs.collection('ice-creams').add(iceCream);
+  createIceCreamProduct(name: IceCream) {
+    return this.afs.collection('ice-creams').add({ name });
   }
 
   deleteIceCreamProduct(iceCream: IceCream) {
-    return this.afs.collection('ice-creams').doc(iceCream.id).delete();
+    return this.afs.collection('ice-creams').doc(iceCream.name).delete();
   }
 
   updateIceCreamProduct(iceCream: IceCream, id: string) {
