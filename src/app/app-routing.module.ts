@@ -8,6 +8,8 @@ import {
   redirectUnauthorizedTo,
   redirectLoggedInTo,
 } from '@angular/fire/compat/auth-guard';
+import { AdminComponent } from './component/admin/admin.component';
+import { AdminGuard } from './auth/guards/admin.guard';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['home']);
@@ -23,6 +25,11 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     ...canActivate(redirectToLogin),
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuard],
   },
 ];
 

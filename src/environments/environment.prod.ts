@@ -1,11 +1,12 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'AIzaSyAYOd9gXo54xEsUFUIDOkeyGFladbW0y5s',
-    authDomain: 'envelo-ice-creams.firebaseapp.com',
-    projectId: 'envelo-ice-creams',
-    storageBucket: 'envelo-ice-creams.appspot.com',
-    messagingSenderId: '115448318763',
-    appId: '1:115448318763:web:53cf9e1bdfea2736ca136e',
+    apiKey: 'AIzaSyAFv1ClJssKnFFqJSLi9ETDuXgTpcAI1oU',
+    authDomain: 'ice-cream-app-add4f.firebaseapp.com',
+    projectId: 'ice-cream-app-add4f',
+    storageBucket: 'ice-cream-app-add4f.appspot.com',
+    messagingSenderId: '52749740620',
+    appId: '1:52749740620:web:12cc243184c63f320a62e9',
+    measurementId: 'G-J1TBJ702XL',
   },
 };

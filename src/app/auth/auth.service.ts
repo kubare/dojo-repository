@@ -11,15 +11,15 @@ import { from } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  currentUser$ = this.auth.authState;
+  currentUser$ = this.afAuth.authState;
 
-  constructor(private auth: AngularFireAuth) {}
+  constructor(private afAuth: AngularFireAuth) {}
 
-  login(username: string, password: string) {
-    return from(this.auth.signInWithEmailAndPassword(username, password));
+  login(email: string, password: string) {
+    return from(this.afAuth.signInWithEmailAndPassword(email, password));
   }
 
   logout() {
-    return from(this.auth.signOut());
+    return from(this.afAuth.signOut());
   }
 }

@@ -16,9 +16,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { AdminComponent } from './component/admin/admin.component';
+import { StoreModule } from '@ngrx/store';
+import { AppState } from './store/app.state';
+import { userReducer } from './store/user/user.reducer';
+import { authReducer } from './store/auth/auth.reducer';
+import { AdminGuard } from './auth/guards/admin.guard';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, LoginComponent, HomeComponent, AdminComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -34,8 +42,17 @@ import { environment } from 'src/environments/environment';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    HotToastModule.forRoot(),
+    StoreModule.forRoot<AppState>({
+      user: userReducer,
+      auth: authReducer,
+    }),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
+      autoPause: true,
+    }),
   ],
-  providers: [],
+  providers: [AdminGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

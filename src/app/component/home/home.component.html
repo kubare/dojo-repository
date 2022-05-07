@@ -1,10 +1,18 @@
 <mat-toolbar color="primary">
   <span>Ice Cream</span>
   <ng-container *ngIf="auth.currentUser$ | async as user">
-    <button mat-button (click)="logout()">
-      Logout
+    <button mat-raised-button (click)="logout()">
+      Wyloguj
     </button>
   </ng-container>
 </mat-toolbar>
 
 <h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
+
+<!-- <router-outlet></router-outlet> -->
+
+<ng-container *ngIf="roleUser === 'admin'">
+  <app-admin></app-admin>
+</ng-container>
+
+<button (click)="moveToAdmin()">Move</button>

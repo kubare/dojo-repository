@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { AuthService } from '../auth.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,12 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private loginService: LoginService,
+    private router: Router,
+    private toast: HotToastService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -33,8 +40,21 @@ export class LoginComponent implements OnInit {
     }
 
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).subscribe(() => {
-      this.router.navigate(['/home']);
-    });
+    this.loginService
+      .loginToSystem(email, password)
+      .pipe(
+        this.toast.observe({
+          success: 'Zalogowano poprawnie',
+          loading: 'Loguje...',
+          error: 'Niepoprawne dane',
+        })
+      )
+      .subscribe((user) => {
+        this.loginService.getUserID(user.user!.uid);
+        this.loginService
+          .setUserData()
+          .subscribe((item) => console.log(item?.role));
+        this.router.navigate(['/home']);
+      });
   }
 }

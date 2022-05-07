@@ -1,13 +1,33 @@
-<div class="form-container">
-  <form [formGroup]="loginForm" (ngSubmit)="submit()">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Email</mat-label>
-      <input matInput type="email" formControlName="email" />
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
+<div class="form-container mat-elevation-z5">
+  <div class="form-header">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Blackpink_Ice_Cream_-_logo.png"
+      alt="Envelo" />
+  </div>
+  <form [formGroup]="loginForm" class="form" (ngSubmit)="submit()">
+    <div class="email-label">
+      <mat-form-field class="example-full-width" >
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="email?.errors?.['required']">
+          Wprowadź email
+        </mat-error>
+        <mat-error *ngIf="email?.errors?.['email']">
+          Wprowadz poprawnie adres email
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="password-label">
+    <mat-form-field class="example-full-width">
       <mat-label>Haslo</mat-label>
       <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Wprowadź hasło
+      </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Login</button>
+    </div>
+    <div class="btn-label">
+      <button mat-raised-button color="primary" type="submit">Login</button>
+    </div>
   </form>
 </div>
