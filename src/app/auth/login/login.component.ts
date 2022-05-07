@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+  roleUser: any;
 
   constructor(
     private authService: AuthService,
@@ -53,8 +54,9 @@ export class LoginComponent implements OnInit {
         this.loginService.getUserID(user.user!.uid);
         this.loginService
           .setUserData()
-          .subscribe((item) => console.log(item?.role));
-        this.router.navigate(['/home']);
+          .subscribe((item) => (this.roleUser = item?.role));
+
+        this.router.navigate(['/admin']);
       });
   }
 }

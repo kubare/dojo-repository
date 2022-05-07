@@ -9,10 +9,13 @@
 
 <h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
 
-<!-- <router-outlet></router-outlet> -->
+<div *ngIf="roleUser === 'admin'; else userDashboard">
+  <p>admin dashboard</p>
+</div>
 
-<ng-container *ngIf="roleUser === 'admin'">
-  <app-admin></app-admin>
-</ng-container>
+
+<ng-template #userDashboard>
+  user dashboard
+</ng-template>
 
 <button (click)="moveToAdmin()">Move</button>

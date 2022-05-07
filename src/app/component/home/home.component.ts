@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { map } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginService } from 'src/app/auth/login/login.service';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-home',
@@ -17,16 +19,18 @@ export class HomeComponent implements OnInit {
   constructor(
     public auth: AuthService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
-    this.loginService.getUserRole().pipe(
-      map((role: any) => {
-        this.roleUser = role;
-        console.log(this.roleUser);
-      })
-    );
+    this.loginService.setUserData().subscribe((x) => {
+      this.roleUser = x?.role;
+      console.log('log from fn');
+
+      console.log(this.roleUser);
+    });
+    console.log(this.roleUser);
   }
 
   logout() {

@@ -18,8 +18,6 @@ export class AdminGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.loginService.getUserRole().pipe(
       map((role: any) => {
-        console.log(role);
-
         if (role === 'admin') {
           return true;
         } else {

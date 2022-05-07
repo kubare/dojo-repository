@@ -1,0 +1,32 @@
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { IceCream } from './ice-cream.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class IceCreamService {
+  constructor(private afs: AngularFirestore) {}
+
+  getIceCream(id: string) {
+    return this.afs.collection('ice-creams').doc(id).valueChanges();
+  }
+
+  getIceCreamsList() {
+    return this.afs.collection('ice-creams').snapshotChanges();
+  }
+
+  createIceCreamProduct(iceCream: IceCream) {
+    return this.afs.collection('ice-creams').add(iceCream);
+  }
+
+  deleteIceCreamProduct(iceCream: IceCream) {
+    return this.afs.collection('ice-creams').doc(iceCream.id).delete();
+  }
+
+  updateIceCreamProduct(iceCream: IceCream, id: string) {
+    return this.afs.collection('ice-creams').doc(id).update({
+      name: iceCream.name,
+    });
+  }
+}
