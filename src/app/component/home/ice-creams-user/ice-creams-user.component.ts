@@ -16,6 +16,7 @@ export class IceCreamsUserComponent implements OnInit {
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
   displayedColumns: string[] = ['name', 'fav'];
   inputTest = new FormControl('');
+  favsIceCreamsSUB!: string[];
 
   constructor(
     private iceCreamService: IceCreamService,
@@ -26,10 +27,17 @@ export class IceCreamsUserComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addValue() {
-    let name: any = { name: this.inputTest.value };
-
-    this.store.dispatch(UserActions.addToFavs({ name }));
-    this.icus.addFavIceCreams({ name });
+  addToFavorite(name: string) {
+    this.loginService.getFavIceCreams().subscribe((res) => {
+      this.favsIceCreamsSUB = res;
+    });
+    this.icus.addFavIceCreams({ name }, this.favsIceCreamsSUB);
   }
+
+  // deleteFromFavorite(name: string) {
+  //   this.loginService.getFavIceCreams().subscribe((res) => {
+  //     this.favsIceCreamsSUB = res;
+  //   });
+  //   this.icus.removeFavIceCreams({ name }, this.favsIceCreamsSUB);
+  // }
 }
