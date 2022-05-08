@@ -22,7 +22,6 @@ export class IceCreamsUserComponent {
   constructor(
     private iceCreamService: IceCreamService,
     private icus: IceCreamsUserService,
-    private store: Store<AppState>,
     private loginService: LoginService
   ) {}
 

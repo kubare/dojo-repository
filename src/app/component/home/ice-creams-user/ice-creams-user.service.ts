@@ -17,6 +17,8 @@ export class IceCreamsUserService {
 
   addFavIceCreams(name: any, list: string[]) {
     const id = this.loginService.getUserID();
+    console.log(list);
+
     this.afs.doc<UserState>(`users/${id}`).update({
       favouriteIC: [...list, name],
     });

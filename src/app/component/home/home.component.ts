@@ -27,11 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.setUserData().subscribe((x) => {
       this.roleUser = x?.role;
-      console.log('log from fn');
-
-      console.log(this.roleUser);
     });
-    console.log(this.roleUser);
   }
 
   logout() {

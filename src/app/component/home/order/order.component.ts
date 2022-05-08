@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
+import { Order } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
 import { UnitsService } from '../../admin/units/units.service';
 import { OrderService } from './order.service';
@@ -18,10 +20,13 @@ interface IceCream {
 export class OrderComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
-  orderList!: string[];
+  orderList!: Order[];
+  toggle: boolean = true;
 
   public iceCreams$: Observable<any[]> =
     this.iceCreamService.getIceCreamsList();
+
+  public favIceCreams$: Observable<any[]> = this.loginService.getFavIceCreams();
 
   public units$: Observable<any[]> = this.unitService.getUnitsList();
 
@@ -30,12 +35,14 @@ export class OrderComponent implements OnInit {
     private iceCreamService: IceCreamService,
     private unitService: UnitsService,
     private orderService: OrderService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.createForm();
-    console.log(this.form);
+    if (this.validateDate()) {
+      this.createForm();
+    }
   }
 
   createForm() {
@@ -66,16 +73,56 @@ export class OrderComponent implements OnInit {
     }
   }
 
+  validateDate() {
+    this.loginService.getUserOrder().subscribe((res) => {
+      this.orderList = res;
+      console.log(this.orderList);
+    });
+
+    return (
+      this.orderList
+        .map((item) => item.date)
+        .filter((date) => this.datesAreOnSameDay(new Date(date), new Date()))
+        .length === 0
+    );
+  }
+
+  datesAreOnSameDay(first: Date, second: Date) {
+    console.log(first);
+    console.log(second);
+
+    return (
+      first.getFullYear() === second.getFullYear() &&
+      first.getMonth() === second.getMonth() &&
+      first.getDate() === second.getDate()
+    );
+  }
+
   createOrder() {
     this.loginService.getUserOrder().subscribe((res) => {
       this.orderList = res;
+      console.log(this.orderList);
     });
-    this.orderService.addFavIceCreams(this.form.value);
-    console.log(this.form.value);
-    console.log(this.orderList);
+
+    this.orderService.addOrder(this.form.value, this.orderList);
+    this.router.navigate(['/home']);
   }
+
+  // repeatLastOrder() {
+  //   this.loginService.getUserOrder().subscribe((res) => {
+  //     this.orderList = res;
+  //   });
+
+  //   this.orderService.addFavIceCreams(this.orderList);
+  //   alert('sukces');
+  //   console.log(this.orderList);
+  // }
 
   removeIngredient(i: Required<number>) {
     this.orders.removeAt(i);
+  }
+
+  toggleSelect() {
+    this.toggle = !this.toggle;
   }
 }

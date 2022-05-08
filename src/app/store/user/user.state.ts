@@ -3,5 +3,10 @@ export interface UserState {
   uid: string;
   role: string;
   favouriteIC: string[];
+  orders: Order[];
+}
+
+export interface Order {
+  date: string;
   order: string[];
 }

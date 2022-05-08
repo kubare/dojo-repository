@@ -1,3 +1,7 @@
+<br><button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">Zamow lody z list ulubionych</button>
+<br><button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Zamow lody z listy wszystkich dostępnych</button>
+<!-- <br><button (click)="repeatLastOrder()"  mat-raised-button color="primary">Powtorz zamowienie</button> -->
+
 <div class="form-container">
   <form class="card" [formGroup]="form" (ngSubmit)="validateForm()">
       <ng-container formArrayName="order" *ngFor="let order of orders.controls; let i = index">
@@ -8,16 +12,33 @@
 
       <div class="body" [formGroupName]="i">
           <div class="labelandinput">
-          <label for="ingredientName">Nazwa lodów</label>
 
+            <div *ngIf="toggle; else favList">
+              <h3>Wszystkie dostepne lody</h3>
+              <label for="ingredientName">Nazwa lodów</label>
+              <mat-form-field appearance="fill">
+                <mat-label>Nazwa lodów</mat-label>
+                <mat-select formControlName="name">
+                  <mat-option *ngFor="let iceCream of iceCreams$ | async" [value]="iceCream.name">
+                    {{iceCream.name}}
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <ng-template #favList>
+              <h3>Twoje ulubione lody</h3>
+
+              <label for="ingredientName">Nazwa lodów</label>
             <mat-form-field appearance="fill">
               <mat-label>Nazwa lodów</mat-label>
               <mat-select formControlName="name">
-                <mat-option *ngFor="let iceCream of iceCreams$ | async" [value]="iceCream.name">
-                  {{iceCream.name}}
+                <mat-option *ngFor="let favIceCream of favIceCreams$ | async" [value]="favIceCream.name">
+                  {{favIceCream.name}}
               </mat-option>
               </mat-select>
             </mat-form-field>
+          </ng-template>
 
           </div>
           <div class="labelandinput">

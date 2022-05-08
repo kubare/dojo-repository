@@ -7,7 +7,7 @@ const initState: UserState = {
   uid: '',
   role: '',
   favouriteIC: [],
-  order: [],
+  orders: [],
 };
 
 export const userReducer = createReducer(
@@ -19,15 +19,15 @@ export const userReducer = createReducer(
       uid: props.uid,
       role: props.role,
       favouriteIC: props.favouriteIC,
-      order: props.order,
+      orders: props.orders,
     };
   }),
-  on(UserActions.addToFavs, (state, props) => {
-    return {
-      ...state,
-      favouriteIC: [...state.favouriteIC, props.name],
-    };
-  }),
+  // on(UserActions.addToFavs, (state, props) => {
+  //   return {
+  //     ...state,
+  //     favouriteIC: [...state.favouriteIC, props.name],
+  //   };
+  // }),
   on(UserActions.logout, (state) => {
     return {
       ...state,
