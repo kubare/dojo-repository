@@ -48,6 +48,7 @@ export class LoginService implements OnInit {
                 role: user.role,
                 uid: user.uid,
                 favouriteIC: user.favouriteIC,
+                order: user.order,
               })
             );
           }
@@ -70,5 +71,9 @@ export class LoginService implements OnInit {
 
   getFavIceCreams() {
     return this.store.select((state) => state.user.favouriteIC);
+  }
+
+  getUserOrder() {
+    return this.store.select((state) => state.user.order);
   }
 }

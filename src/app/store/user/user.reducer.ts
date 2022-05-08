@@ -7,6 +7,7 @@ const initState: UserState = {
   uid: '',
   role: '',
   favouriteIC: [],
+  order: [],
 };
 
 export const userReducer = createReducer(
@@ -18,6 +19,7 @@ export const userReducer = createReducer(
       uid: props.uid,
       role: props.role,
       favouriteIC: props.favouriteIC,
+      order: props.order,
     };
   }),
   on(UserActions.addToFavs, (state, props) => {

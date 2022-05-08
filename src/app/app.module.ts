@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -30,6 +31,7 @@ import { UnitsComponent } from './component/admin/units/units.component';
 import { UserListComponent } from './component/admin/user-list/user-list.component';
 import { IceCreamsUserComponent } from './component/home/ice-creams-user/ice-creams-user.component';
 import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/fav-ice-creams-user.component';
+import { OrderComponent } from './component/home/order/order.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/
     UserListComponent,
     IceCreamsUserComponent,
     FavIceCreamsUserComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/
     MatTableModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatInputModule,
     HotToastModule.forRoot(),
     StoreModule.forRoot<AppState>({

@@ -1,0 +1,44 @@
+<div class="form-container">
+  <form class="card" [formGroup]="form" (ngSubmit)="validateForm()">
+      <ng-container formArrayName="order" *ngFor="let order of orders.controls; let i = index">
+
+        <div class="label-actions">
+        <button id="delete-btn" (click)="removeIngredient(i)">X</button>
+        </div>
+
+      <div class="body" [formGroupName]="i">
+          <div class="labelandinput">
+          <label for="ingredientName">Nazwa lodów</label>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Nazwa lodów</mat-label>
+              <mat-select formControlName="name">
+                <mat-option *ngFor="let iceCream of iceCreams$ | async" [value]="iceCream.name">
+                  {{iceCream.name}}
+              </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+          <div class="labelandinput">
+            <label for="ingredientName">Ilość</label>
+            <mat-form-field appearance="fill">
+              <mat-label>Ilość</mat-label>
+              <mat-select formControlName="value">
+                <mat-option *ngFor="let unit of units$ | async" [value]="unit.value">
+                  {{unit.value}} kg
+              </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+      </div>
+     </ng-container>
+     <div class="btn-section">
+    <button id="save-btn" (click)="createOrder()" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Recipe</button>
+    <button type="button" (click)="addNewIngredient()">Add new ingredient</button>
+
+  </div>
+  </form>
+  </div>
+

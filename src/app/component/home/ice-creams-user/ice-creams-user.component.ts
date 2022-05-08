@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/auth/login/login.service';
 import { AppState } from 'src/app/store/app.state';
 import { UserActions } from 'src/app/store/user/user.actions';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
+import { UnitsService } from '../../admin/units/units.service';
 import { IceCreamsUserService } from './ice-creams-user.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { IceCreamsUserService } from './ice-creams-user.service';
   templateUrl: './ice-creams-user.component.html',
   styleUrls: ['./ice-creams-user.component.css'],
 })
-export class IceCreamsUserComponent implements OnInit {
+export class IceCreamsUserComponent {
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
   displayedColumns: string[] = ['name', 'fav'];
   inputTest = new FormControl('');
@@ -24,8 +25,6 @@ export class IceCreamsUserComponent implements OnInit {
     private store: Store<AppState>,
     private loginService: LoginService
   ) {}
-
-  ngOnInit(): void {}
 
   addToFavorite(name: string) {
     this.loginService.getFavIceCreams().subscribe((res) => {

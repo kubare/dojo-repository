@@ -3,4 +3,5 @@ export interface UserState {
   uid: string;
   role: string;
   favouriteIC: string[];
+  order: string[];
 }
