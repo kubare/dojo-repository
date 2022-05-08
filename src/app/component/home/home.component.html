@@ -9,7 +9,7 @@
 
 
 <ng-container *ngIf="userRole$ | async as userRole">
-  {{userRole}}
+  test: {{userRole}}
   <div *ngIf="userRole === 'admin'; else userDashboard">
   <app-admin></app-admin>
   </div>

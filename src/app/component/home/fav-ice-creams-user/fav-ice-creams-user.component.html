@@ -1,1 +1,12 @@
-<p>fav-ice-creams-user works!</p>
+<table mat-table [dataSource]="favsIceCreamsSUB" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="favs">
+    <th mat-header-cell *matHeaderCellDef> Ulubione lody </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
