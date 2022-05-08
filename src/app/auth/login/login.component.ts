@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         })
       )
       .subscribe((user) => {
-        this.loginService.getUserID(user.user!.uid);
+        this.loginService.setUserID(user.user!.uid);
         this.loginService
           .setUserData()
           .subscribe((item) => (this.roleUser = item?.role));

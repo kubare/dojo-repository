@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { LoginService } from 'src/app/auth/login/login.service';
+import { AppState } from 'src/app/store/app.state';
+import { UserActions } from 'src/app/store/user/user.actions';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
+import { IceCreamsUserService } from './ice-creams-user.service';
 
 @Component({
   selector: 'app-ice-creams-user',
@@ -9,8 +15,21 @@ import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
 export class IceCreamsUserComponent implements OnInit {
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
   displayedColumns: string[] = ['name', 'fav'];
+  inputTest = new FormControl('');
 
-  constructor(private iceCreamService: IceCreamService) {}
+  constructor(
+    private iceCreamService: IceCreamService,
+    private icus: IceCreamsUserService,
+    private store: Store<AppState>,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {}
+
+  addValue() {
+    let name: any = { name: this.inputTest.value };
+
+    this.store.dispatch(UserActions.addToFavs({ name }));
+    this.icus.addFavIceCreams({ name });
+  }
 }

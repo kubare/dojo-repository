@@ -55,9 +55,13 @@ export class LoginService implements OnInit {
       );
   }
 
-  getUserID(id: string) {
+  setUserID(id: string) {
     this.userID = id;
     console.log(this.userID);
+  }
+
+  getUserID() {
+    return this.userID;
   }
 
   getUserRole() {

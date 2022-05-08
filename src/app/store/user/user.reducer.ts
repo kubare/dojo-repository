@@ -20,6 +20,12 @@ export const userReducer = createReducer(
       favouriteIC: props.favouriteIC,
     };
   }),
+  on(UserActions.addToFavs, (state, props) => {
+    return {
+      ...state,
+      favouriteIC: [...state.favouriteIC, props.name],
+    };
+  }),
   on(UserActions.logout, (state) => {
     return {
       ...state,
