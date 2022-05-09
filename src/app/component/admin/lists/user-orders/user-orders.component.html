@@ -1,0 +1,15 @@
+<br><button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">Zamowienia użytkowników</button>
+<br><button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Zamówienia dzisiejsze</button>
+
+<ng-container *ngFor="let item of users$ | async">
+  <ng-container *ngFor="let singleOrder of item.orders">
+    <ng-container *ngFor="let orderDetails of singleOrder.order">
+
+<mat-card>
+    {{item.email}}
+  {{singleOrder.date}}
+  {{orderDetails.name}} - {{orderDetails.value}} kg
+</mat-card>
+</ng-container>
+</ng-container>
+</ng-container>

@@ -14,7 +14,7 @@ import { IceCreamsUserService } from './ice-creams-user.service';
   styleUrls: ['./ice-creams-user.component.css'],
 })
 export class IceCreamsUserComponent {
-  public iceCreams$ = this.iceCreamService.getIceCreamsList();
+  public iceCreams$ = this.iceCreamService.getIceCreamsValueList();
   displayedColumns: string[] = ['name', 'fav'];
   inputTest = new FormControl('');
   favsIceCreamsSUB!: string[];

@@ -4,7 +4,7 @@
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="addIceCream()">Dodaj</button>
 
-<table *ngIf="iceCreams$ | async as iceCream" mat-table [dataSource]="iceCream" class="mat-elevation-z8">
+<table *ngIf="iceCreams$ | async as iceCream" mat-table [dataSource]="iceCreams" class="mat-elevation-z8">
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
@@ -16,7 +16,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef> Usuń </th>
     <td mat-cell *matCellDef="let element"><div class="example-button-container">
-      <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+      <button (click)="removeIceCream(element)" mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
         <mat-icon>close</mat-icon>
       </button>
     </div> </td>

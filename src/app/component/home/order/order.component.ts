@@ -24,11 +24,11 @@ export class OrderComponent implements OnInit {
   toggle: boolean = true;
 
   public iceCreams$: Observable<any[]> =
-    this.iceCreamService.getIceCreamsList();
+    this.iceCreamService.getIceCreamsValueList();
 
   public favIceCreams$: Observable<any[]> = this.loginService.getFavIceCreams();
 
-  public units$: Observable<any[]> = this.unitService.getUnitsList();
+  public units$: Observable<any[]> = this.unitService.getUnitsValueList();
 
   constructor(
     private fb: FormBuilder,

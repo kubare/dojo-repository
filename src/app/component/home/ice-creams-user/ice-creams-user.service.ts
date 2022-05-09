@@ -29,7 +29,7 @@ export class IceCreamsUserService {
     console.log(list);
     console.log(name);
 
-    const newFav = [...list].filter((item) => item !== name);
+    const newFav = list.filter((item) => item !== name);
     this.afs.doc<UserState>(`users/${id}`).update({
       favouriteIC: [...newFav],
     });

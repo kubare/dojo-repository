@@ -13,6 +13,10 @@ export class IceCreamService {
   }
 
   getIceCreamsList() {
+    return this.afs.collection('ice-creams').snapshotChanges();
+  }
+
+  getIceCreamsValueList() {
     return this.afs.collection('ice-creams').valueChanges();
   }
 
@@ -21,7 +25,7 @@ export class IceCreamService {
   }
 
   deleteIceCreamProduct(iceCream: IceCream) {
-    return this.afs.collection('ice-creams').doc(iceCream.name).delete();
+    return this.afs.collection('ice-creams').doc(iceCream.id).delete();
   }
 
   updateIceCreamProduct(iceCream: IceCream, id: string) {
