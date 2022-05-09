@@ -3,7 +3,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { User } from 'firebase/auth';
 import { BehaviorSubject } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
-import { UserState } from 'src/app/store/user/user.state';
+import { IceCreamFavourtie, UserState } from 'src/app/store/user/user.state';
+import { IceCreamFav } from './ice-cream.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,21 +16,23 @@ export class IceCreamsUserService {
     private loginService: LoginService
   ) {}
 
-  addFavIceCreams(name: any, list: string[]) {
+  addFavIceCreams(iceCream: IceCreamFavourtie, list: IceCreamFavourtie[]) {
     const id = this.loginService.getUserID();
     console.log(list);
 
     this.afs.doc<UserState>(`users/${id}`).update({
-      favouriteIC: [...list, name],
+      favouriteIC: [...list, iceCream],
     });
   }
 
-  removeFavIceCreams(name: any, list: string[]) {
+  removeFavIceCreams(iceCream: IceCreamFavourtie, list: IceCreamFavourtie[]) {
     const id = this.loginService.getUserID();
     console.log(list);
-    console.log(name);
+    console.log(iceCream);
 
-    const newFav = list.filter((item) => item !== name);
+    const newFav = list.filter((item) => item.name !== iceCream.name);
+    console.log(newFav);
+
     this.afs.doc<UserState>(`users/${id}`).update({
       favouriteIC: [...newFav],
     });

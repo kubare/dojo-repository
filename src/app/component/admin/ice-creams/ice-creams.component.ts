@@ -11,7 +11,7 @@ import { IceCreamService } from './ice-cream.service';
 })
 export class IceCreamsComponent implements OnInit {
   iceCreamInput = new FormControl('');
-  iceCreams!: any[];
+  iceCreams!: IceCream[];
 
   displayedColumns: string[] = ['name', 'actions'];
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
@@ -23,7 +23,7 @@ export class IceCreamsComponent implements OnInit {
       this.iceCreams = data.map((e) => {
         return {
           id: e.payload.doc.id,
-          ...(e.payload.doc.data() as any),
+          ...(e.payload.doc.data() as IceCream),
         };
       });
     });

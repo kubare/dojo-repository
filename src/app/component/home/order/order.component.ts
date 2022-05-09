@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { last, Observable, Subject } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { Order } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
@@ -40,18 +40,16 @@ export class OrderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.validateDate()) {
-      this.createForm();
-    }
+    this.createForm();
   }
 
   createForm() {
     this.form = this.fb.group({
-      order: this.fb.array([this.ingredientsForm()]),
+      order: this.fb.array([this.iceCreamsForm()]),
     });
   }
 
-  ingredientsForm() {
+  iceCreamsForm() {
     return this.fb.group({
       name: [null, Validators.required],
       value: [null, Validators.required],
@@ -62,8 +60,8 @@ export class OrderComponent implements OnInit {
     return this.form.get('order') as FormArray;
   }
 
-  addNewIngredient() {
-    this.orders.push(this.ingredientsForm());
+  addNewIceCream() {
+    this.orders.push(this.iceCreamsForm());
   }
 
   validateForm() {
@@ -76,7 +74,6 @@ export class OrderComponent implements OnInit {
   validateDate() {
     this.loginService.getUserOrder().subscribe((res) => {
       this.orderList = res;
-      console.log(this.orderList);
     });
 
     return (
@@ -88,9 +85,6 @@ export class OrderComponent implements OnInit {
   }
 
   datesAreOnSameDay(first: Date, second: Date) {
-    console.log(first);
-    console.log(second);
-
     return (
       first.getFullYear() === second.getFullYear() &&
       first.getMonth() === second.getMonth() &&
@@ -101,24 +95,36 @@ export class OrderComponent implements OnInit {
   createOrder() {
     this.loginService.getUserOrder().subscribe((res) => {
       this.orderList = res;
-      console.log(this.orderList);
     });
 
     this.orderService.addOrder(this.form.value, this.orderList);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/main']);
   }
 
-  // repeatLastOrder() {
-  //   this.loginService.getUserOrder().subscribe((res) => {
-  //     this.orderList = res;
-  //   });
+  replaceOrder() {
+    this.loginService.getUserOrder().subscribe((res) => {
+      this.orderList = res;
+    });
+    console.log(this.orderList);
 
-  //   this.orderService.addFavIceCreams(this.orderList);
-  //   alert('sukces');
-  //   console.log(this.orderList);
-  // }
+    const lastElement = this.orderList[this.orderList.length - 1];
+    // const newDate = new Date();
+    // const replaceNewOrder = {
+    //   ...lastElement,
+    //   date: newDate.toLocaleDateString('en-US'),
+    // };
 
-  removeIngredient(i: Required<number>) {
+    // const sortResult = this.orderList.sort(function (a, b) {
+    //   const c = new Date(a.date);
+    //   const d = new Date(b.date);
+    //   return d.getTime() - c.getTime();
+    // });
+
+    this.orderService.addOrder(lastElement.order, this.orderList);
+    this.router.navigate(['/main']);
+  }
+
+  removeIceCream(i: Required<number>) {
     this.orders.removeAt(i);
   }
 

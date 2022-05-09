@@ -2,8 +2,12 @@ export interface UserState {
   email: string;
   uid: string;
   role: string;
-  favouriteIC: string[];
+  favouriteIC: IceCreamFavourtie[];
   orders: Order[];
+}
+
+export interface IceCreamFavourtie {
+  name: string;
 }
 
 export interface Order {

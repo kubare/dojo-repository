@@ -1,65 +1,71 @@
-<br><button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">Zamow lody z list ulubionych</button>
-<br><button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Zamow lody z listy wszystkich dostępnych</button>
-<!-- <br><button (click)="repeatLastOrder()"  mat-raised-button color="primary">Powtorz zamowienie</button> -->
+<ng-container *ngIf="validateDate(); else formOrder">
+  <br>
+  <br><button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">Zamow lody z list ulubionych</button>
+  <br><button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Zamow lody z listy wszystkich dostępnych</button>
 
-<div class="form-container">
-  <form class="card" [formGroup]="form" (ngSubmit)="validateForm()">
-      <ng-container formArrayName="order" *ngFor="let order of orders.controls; let i = index">
+  <div class="form-container">
+    <form class="card" [formGroup]="form" (ngSubmit)="validateForm()">
+        <ng-container formArrayName="order" *ngFor="let order of orders.controls; let i = index">
 
-        <div class="label-actions">
-        <button id="delete-btn" (click)="removeIngredient(i)">X</button>
-        </div>
+          <div class="label-actions">
+          <button id="delete-btn" (click)="removeIceCream(i)">USUN</button>
+          </div>
 
-      <div class="body" [formGroupName]="i">
-          <div class="labelandinput">
+        <div class="body" [formGroupName]="i">
+            <div class="labelandinput">
 
-            <div *ngIf="toggle; else favList">
-              <h3>Wszystkie dostepne lody</h3>
-              <label for="ingredientName">Nazwa lodów</label>
+              <div *ngIf="toggle; else favList">
+                <h3>Wszystkie dostepne lody</h3>
+                <label for="ingredientName">Nazwa lodów</label>
+                <mat-form-field appearance="fill">
+                  <mat-label>Nazwa lodów</mat-label>
+                  <mat-select formControlName="name">
+                    <mat-option *ngFor="let iceCream of iceCreams$ | async" [value]="iceCream.name">
+                      {{iceCream.name}}
+                  </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <ng-template #favList>
+                <h3>Twoje ulubione lody</h3>
+
+                <label for="ingredientName">Nazwa lodów</label>
               <mat-form-field appearance="fill">
                 <mat-label>Nazwa lodów</mat-label>
                 <mat-select formControlName="name">
-                  <mat-option *ngFor="let iceCream of iceCreams$ | async" [value]="iceCream.name">
-                    {{iceCream.name}}
+                  <mat-option *ngFor="let favIceCream of favIceCreams$ | async" [value]="favIceCream.name">
+                    {{favIceCream.name}}
                 </mat-option>
                 </mat-select>
               </mat-form-field>
+            </ng-template>
+
             </div>
+            <div class="labelandinput">
+              <label for="ingredientName">Ilość</label>
+              <mat-form-field appearance="fill">
+                <mat-label>Ilość</mat-label>
+                <mat-select formControlName="value">
+                  <mat-option *ngFor="let unit of units$ | async" [value]="unit.value">
+                    {{unit.value}} kg
+                </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <ng-template #favList>
-              <h3>Twoje ulubione lody</h3>
-
-              <label for="ingredientName">Nazwa lodów</label>
-            <mat-form-field appearance="fill">
-              <mat-label>Nazwa lodów</mat-label>
-              <mat-select formControlName="name">
-                <mat-option *ngFor="let favIceCream of favIceCreams$ | async" [value]="favIceCream.name">
-                  {{favIceCream.name}}
-              </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </ng-template>
-
-          </div>
-          <div class="labelandinput">
-            <label for="ingredientName">Ilość</label>
-            <mat-form-field appearance="fill">
-              <mat-label>Ilość</mat-label>
-              <mat-select formControlName="value">
-                <mat-option *ngFor="let unit of units$ | async" [value]="unit.value">
-                  {{unit.value}} kg
-              </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-          </div>
-      </div>
-     </ng-container>
-     <div class="btn-section">
-    <button id="save-btn" (click)="createOrder()" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Recipe</button>
-    <button type="button" (click)="addNewIngredient()">Add new ingredient</button>
-
+            </div>
+        </div>
+       </ng-container>
+       <div class="btn-section">
+      <button id="save-btn" (click)="createOrder()" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Create order</button>
+      <button type="button" (click)="addNewIceCream()">Add new ice cream</button>
+    </div>
+    </form>
   </div>
-  </form>
-  </div>
+</ng-container>
 
+<ng-template #formOrder>
+<p>zamowiles juz dzis</p>
+</ng-template>
+<br>
+<button (click)="replaceOrder()">Powtorz zamowienie</button>
