@@ -17,6 +17,7 @@ import { UserListComponent } from './component/admin/user-list/user-list.compone
 import { IceCreamsUserComponent } from './component/home/ice-creams-user/ice-creams-user.component';
 import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/fav-ice-creams-user.component';
 import { OrderComponent } from './component/home/order/order.component';
+import { OrderListComponent } from './component/home/order-list/order-list.component';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['home']);
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'ice-cream-list', component: IceCreamsUserComponent },
       { path: 'fav-list', component: FavIceCreamsUserComponent },
       { path: 'order', component: OrderComponent },
+      { path: 'order-list', component: OrderListComponent },
     ],
   },
   {

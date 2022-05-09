@@ -11,7 +11,7 @@
 <ng-container *ngIf="userRole$ | async as userRole">
   test: {{userRole}}
   <div *ngIf="userRole === 'admin'; else userDashboard">
-  <app-admin></app-admin>
+  <!-- <app-admin></app-admin> -->
   </div>
 </ng-container>
 
@@ -30,6 +30,9 @@
 </button>
 <button mat-raised-button color="primary" routerLink="order">
   Zamow lody
+</button>
+<button mat-raised-button color="primary" routerLink="order-list">
+  Wyswietl zamowienie
 </button>
 
 <router-outlet></router-outlet>

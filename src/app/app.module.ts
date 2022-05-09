@@ -32,6 +32,7 @@ import { UserListComponent } from './component/admin/user-list/user-list.compone
 import { IceCreamsUserComponent } from './component/home/ice-creams-user/ice-creams-user.component';
 import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/fav-ice-creams-user.component';
 import { OrderComponent } from './component/home/order/order.component';
+import { OrderListComponent } from './component/home/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { OrderComponent } from './component/home/order/order.component';
     IceCreamsUserComponent,
     FavIceCreamsUserComponent,
     OrderComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,

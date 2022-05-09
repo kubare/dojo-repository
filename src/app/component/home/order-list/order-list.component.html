@@ -1,0 +1,9 @@
+<p>order-list works!</p>
+
+<div *ngFor="let x of orderList$ | async">
+  {{x.date}}
+  <div *ngFor="let orderDetails of x.order">
+  {{orderDetails.name}}
+  {{orderDetails.value}} kg
+</div>
+</div>
