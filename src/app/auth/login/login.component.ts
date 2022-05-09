@@ -52,14 +52,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe((user) => {
         this.loginService.setUserID(user.user!.uid);
-        this.loginService
-          .setUserData()
-          .subscribe((item) => (this.roleUser = item?.role));
-        if (this.roleUser === 'admin') {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/home']);
-        }
+        this.router.navigate(['main']);
       });
   }
 }

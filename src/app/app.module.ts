@@ -36,6 +36,7 @@ import { OrderListComponent } from './component/home/order-list/order-list.compo
 import { UserOrdersComponent } from './component/admin/lists/user-orders/user-orders.component';
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { MainComponent } from './component/main/main.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     OrderComponent,
     OrderListComponent,
     UserOrdersComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,37 +19,45 @@ import { FavIceCreamsUserComponent } from './component/home/fav-ice-creams-user/
 import { OrderComponent } from './component/home/order/order.component';
 import { OrderListComponent } from './component/home/order-list/order-list.component';
 import { UserOrdersComponent } from './component/admin/lists/user-orders/user-orders.component';
+import { MainComponent } from './component/main/main.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectToHome = () => redirectLoggedInTo(['home']);
+const redirectToHome = () => redirectLoggedInTo(['main']);
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,
-    ...canActivate(redirectToHome),
   },
   {
-    path: 'home',
-    component: HomeComponent,
-    ...canActivate(redirectToLogin),
+    path: 'main',
+    component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: 'ice-cream-list', component: IceCreamsUserComponent },
-      { path: 'fav-list', component: FavIceCreamsUserComponent },
-      { path: 'order', component: OrderComponent },
-      { path: 'order-list', component: OrderListComponent },
-    ],
-  },
-  {
-    path: 'admin',
-    component: AdminComponent,
-    // canActivate: [AdminGuard],
-    children: [
-      { path: 'ice-creams', component: IceCreamsComponent },
-      { path: 'units', component: UnitsComponent },
-      { path: 'users', component: UserListComponent },
-      { path: 'orders', component: UserOrdersComponent },
+      {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AdminGuard],
+        children: [
+          { path: 'ice-creams', component: IceCreamsComponent },
+          { path: 'units', component: UnitsComponent },
+          { path: 'users', component: UserListComponent },
+          { path: 'orders', component: UserOrdersComponent },
+        ],
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [UserGuard],
+        children: [
+          { path: 'ice-cream-list', component: IceCreamsUserComponent },
+          { path: 'fav-list', component: FavIceCreamsUserComponent },
+          { path: 'order', component: OrderComponent },
+          { path: 'order-list', component: OrderListComponent },
+        ],
+      },
     ],
   },
 ];

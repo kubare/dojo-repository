@@ -12,13 +12,13 @@ import { LoginService } from '../login/login.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UserGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(private loginService: LoginService, private router: Router) {}
 
   canActivate(): Observable<boolean> {
-    return this.loginService.getUserRole().pipe(
-      map((role: any) => {
-        if (role === 'user') {
+    return this.loginService.getUserAuth().pipe(
+      map((auth: any) => {
+        if (!auth) {
           return true;
         } else {
           this.router.navigate(['main']);

@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <span>Ice Cream</span>
+  <ng-container *ngIf="auth.currentUser$ | async as user">
+    <button mat-raised-button (click)="logout()">
+      Wyloguj
+    </button>
+  </ng-container>
+</mat-toolbar>
+
+<ng-container *ngIf="userRole$ | async as role">
+  <ng-container *ngIf="role === 'admin'">
+    <button mat-raised-button routerLink="admin/ice-creams">
+      Lody
+    </button>
+    <button mat-raised-button routerLink="admin/units">
+      Units
+    </button>
+    <button mat-raised-button routerLink="admin/users">
+      Uzytkownicy
+    </button>
+    <button mat-raised-button routerLink="admin/orders">
+      Zamówienia
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="role === 'user'">
+    <button mat-raised-button color="primary" routerLink="home/ice-cream-list">
+      Lista lodow
+    </button>
+    <button mat-raised-button color="primary" routerLink="home/fav-list">
+      Ulubione lody
+    </button>
+    <button mat-raised-button color="primary" routerLink="home/order">
+      Zamow lody
+    </button>
+    <button mat-raised-button color="primary" routerLink="home/order-list">
+      Wyswietl zamowienie
+    </button>
+  </ng-container>
+
+</ng-container>
+
+<router-outlet></router-outlet>
+
+
+<!-- <ng-container *ngIf="userRole$ | async as userRole">
+  test: {{userRole}}
+  <div *ngIf="userRole === 'admin'; else userDashboard">
+  <app-admin></app-admin>
+  </div>
+</ng-container>
+
+<ng-template #userDashboard>
+  user dashboard
+  <h3 *ngIf="user$ | async as user">Hej {{user.email}}</h3>
+</ng-template>
+
+<button (click)="moveToAdmin()">Move</button>
+
+<button mat-raised-button color="primary" routerLink="ice-cream-list">
+  Lista lodow
+</button>
+<button mat-raised-button color="primary" routerLink="fav-list">
+  Ulubione lody
+</button>
+<button mat-raised-button color="primary" routerLink="order">
+  Zamow lody
+</button>
+<button mat-raised-button color="primary" routerLink="order-list">
+  Wyswietl zamowienie
+</button> -->
+

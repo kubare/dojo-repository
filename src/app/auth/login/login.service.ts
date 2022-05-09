@@ -76,4 +76,8 @@ export class LoginService implements OnInit {
   getUserOrder() {
     return this.store.select((state) => state.user.orders);
   }
+
+  getUserAuth() {
+    return this.store.select((state) => state.auth.isAuth);
+  }
 }
