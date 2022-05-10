@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   roleUser: any;
 
   constructor(
-    private authService: AuthService,
     private loginService: LoginService,
     private router: Router,
     private toast: HotToastService

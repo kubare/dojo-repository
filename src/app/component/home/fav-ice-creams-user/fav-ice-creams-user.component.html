@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="favsIceCreamsSUB" class="mat-elevation-z8">
+<table mat-table *ngIf="favsIceCreams$ | async as favs" [dataSource]="favs" class="mat-elevation-z8">
 
   <ng-container matColumnDef="favs">
     <th mat-header-cell *matHeaderCellDef> Ulubione lody </th>

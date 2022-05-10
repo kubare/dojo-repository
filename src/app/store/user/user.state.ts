@@ -12,7 +12,7 @@ export interface IceCreamFavourtie {
 
 export interface Order {
   date: string;
-  order: string[];
+  order: SingleOrder[];
 }
 
 export interface SingleOrder {

@@ -18,8 +18,6 @@ export class OrderService {
     const formatData = date.toLocaleDateString('en-US');
     console.log(order);
 
-    console.log(date);
-
     this.afs.doc<UserState>(`users/${id}`).update({
       orders: [...list, { ...order, date: formatData }],
     });

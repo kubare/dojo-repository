@@ -14,7 +14,6 @@ import { AuthService } from '../auth.service';
 })
 export class LoginService implements OnInit {
   private userID!: string;
-  private role!: any;
 
   constructor(
     private authService: AuthService,
@@ -22,10 +21,7 @@ export class LoginService implements OnInit {
     private firebase: AngularFirestore
   ) {}
 
-  ngOnInit(): void {
-    this.setUserData().subscribe((item) => (this.role = item?.role));
-    console.log(this.role);
-  }
+  ngOnInit(): void {}
 
   registerToSystem(email: string, password: string) {
     this.authService

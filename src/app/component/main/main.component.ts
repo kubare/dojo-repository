@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginService } from 'src/app/auth/login/login.service';
@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/auth/login/login.service';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit {
   user$ = this.auth.currentUser$;
@@ -26,9 +27,5 @@ export class MainComponent implements OnInit {
     this.auth.logout().subscribe(() => {
       this.router.navigate(['login']);
     });
-  }
-
-  moveToAdmin() {
-    this.router.navigate(['admin']);
   }
 }

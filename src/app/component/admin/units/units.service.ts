@@ -13,14 +13,14 @@ export class UnitsService {
   }
 
   getUnitsValueList() {
-    return this.afs.collection('units').valueChanges();
+    return this.afs.collection<Unit>('units').valueChanges();
   }
 
   createUnit(value: Unit) {
     return this.afs.collection('units').add({ value });
   }
 
-  deleteUnit(unit: any) {
+  deleteUnit(unit: Unit) {
     return this.afs.collection('units').doc(unit.id).delete();
   }
 }

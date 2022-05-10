@@ -10,7 +10,7 @@ import { IceCreamsUserService } from '../ice-creams-user/ice-creams-user.service
   styleUrls: ['./fav-ice-creams-user.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavIceCreamsUserComponent implements OnInit {
+export class FavIceCreamsUserComponent {
   public favsIceCreams$ = this.loginService.getFavIceCreams();
   favsIceCreamsSUB!: IceCreamFavourtie[];
   displayedColumns: string[] = ['favs', 'del'];
@@ -19,15 +19,6 @@ export class FavIceCreamsUserComponent implements OnInit {
     private loginService: LoginService,
     private icus: IceCreamsUserService
   ) {}
-
-  ngOnInit(): void {
-    this.loginService.getFavIceCreams().subscribe((res) => {
-      this.favsIceCreamsSUB = res;
-    });
-
-    console.log(this.favsIceCreamsSUB);
-    console.log(this.favsIceCreams$);
-  }
 
   deleteFromFavorite(iceCream: IceCreamFavourtie) {
     this.loginService.getFavIceCreams().subscribe((res) => {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { last, Observable, Subject } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { Order } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
+import { Unit } from '../../admin/units/units.model';
 import { UnitsService } from '../../admin/units/units.service';
 import { OrderService } from './order.service';
 
@@ -16,6 +17,7 @@ interface IceCream {
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderComponent implements OnInit {
   form!: FormGroup;
@@ -23,12 +25,13 @@ export class OrderComponent implements OnInit {
   orderList!: Order[];
   toggle: boolean = true;
 
-  public iceCreams$: Observable<any[]> =
+  public iceCreams$: Observable<IceCream[]> =
     this.iceCreamService.getIceCreamsValueList();
 
-  public favIceCreams$: Observable<any[]> = this.loginService.getFavIceCreams();
+  public favIceCreams$: Observable<IceCream[]> =
+    this.loginService.getFavIceCreams();
 
-  public units$: Observable<any[]> = this.unitService.getUnitsValueList();
+  public units$: Observable<Unit[]> = this.unitService.getUnitsValueList();
 
   constructor(
     private fb: FormBuilder,

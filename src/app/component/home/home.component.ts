@@ -12,32 +12,6 @@ import { AppState } from 'src/app/store/app.state';
   styleUrls: ['./home.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
-  user$ = this.auth.currentUser$;
-  userRole$ = this.loginService.getUserRole();
-  roleUser: any;
-
-  constructor(
-    public auth: AuthService,
-    private loginService: LoginService,
-    private router: Router,
-    private store: Store<AppState>
-  ) {}
-
-  ngOnInit(): void {
-    this.loginService.setUserData().subscribe((x) => {
-      this.roleUser = x?.role;
-    });
-  }
-
-  logout() {
-    this.auth.logout().subscribe(() => {
-      this.router.navigate(['login']);
-    });
-  }
-
-  moveToAdmin() {
-    this.router.navigate(['admin']);
-    console.log(this.roleUser);
-  }
+export class HomeComponent {
+  constructor() {}
 }

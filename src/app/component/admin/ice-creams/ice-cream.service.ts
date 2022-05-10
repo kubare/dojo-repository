@@ -13,11 +13,11 @@ export class IceCreamService {
   }
 
   getIceCreamsList() {
-    return this.afs.collection('ice-creams').snapshotChanges();
+    return this.afs.collection<IceCream>('ice-creams').snapshotChanges();
   }
 
   getIceCreamsValueList() {
-    return this.afs.collection('ice-creams').valueChanges();
+    return this.afs.collection<IceCream>('ice-creams').valueChanges();
   }
 
   createIceCreamProduct(name: IceCream) {

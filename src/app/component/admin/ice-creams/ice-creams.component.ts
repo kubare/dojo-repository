@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { IceCream } from './ice-cream.model';
 import { IceCreamService } from './ice-cream.service';
 
@@ -33,7 +34,7 @@ export class IceCreamsComponent implements OnInit {
     this.iceCreamService.createIceCreamProduct(this.iceCreamInput.value);
   }
 
-  removeIceCream(iceCream: any) {
+  removeIceCream(iceCream: IceCream) {
     this.iceCreamService.deleteIceCreamProduct(iceCream);
   }
 }
