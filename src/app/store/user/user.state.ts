@@ -14,3 +14,8 @@ export interface Order {
   date: string;
   order: string[];
 }
+
+export interface SingleOrder {
+  name: string;
+  value: number;
+}

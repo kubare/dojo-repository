@@ -21,6 +21,7 @@ import { OrderListComponent } from './component/home/order-list/order-list.compo
 import { UserOrdersComponent } from './component/admin/lists/user-orders/user-orders.component';
 import { MainComponent } from './component/main/main.component';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { CreateUserComponent } from './component/admin/create-user/create-user.component';
 
 const redirectToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectToHome = () => redirectLoggedInTo(['main']);
@@ -45,6 +46,7 @@ const routes: Routes = [
           { path: 'units', component: UnitsComponent },
           { path: 'users', component: UserListComponent },
           { path: 'orders', component: UserOrdersComponent },
+          { path: 'create-user', component: CreateUserComponent },
         ],
       },
       {

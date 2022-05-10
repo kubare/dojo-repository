@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from '@firebase/util';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
 import { AuthActions } from 'src/app/store/auth/auth.actions';
 import { UserActions } from 'src/app/store/user/user.actions';
@@ -27,10 +27,39 @@ export class LoginService implements OnInit {
     console.log(this.role);
   }
 
+  registerToSystem(email: string, password: string) {
+    this.authService
+      .register(email, password)
+      .pipe(
+        switchMap((newUser) => {
+          return this.firebase.doc<UserState>(`users/${newUser.user!.uid}`).set(
+            {
+              uid: newUser.user!.uid,
+              email: email,
+              role: 'user',
+              favouriteIC: [],
+              orders: [],
+            },
+            { merge: true }
+          );
+        })
+      )
+      .subscribe();
+  }
+
   loginToSystem(email: string, password: string) {
     return this.authService.login(email, password).pipe(
       tap(() => {
         this.store.dispatch(AuthActions.login());
+      })
+    );
+  }
+
+  logoutFromSystem() {
+    return this.authService.logout().pipe(
+      tap(() => {
+        this.store.dispatch(UserActions.logout());
+        this.store.dispatch(AuthActions.logout());
       })
     );
   }

@@ -108,11 +108,6 @@ export class OrderComponent implements OnInit {
     console.log(this.orderList);
 
     const lastElement = this.orderList[this.orderList.length - 1];
-    // const newDate = new Date();
-    // const replaceNewOrder = {
-    //   ...lastElement,
-    //   date: newDate.toLocaleDateString('en-US'),
-    // };
 
     // const sortResult = this.orderList.sort(function (a, b) {
     //   const c = new Date(a.date);

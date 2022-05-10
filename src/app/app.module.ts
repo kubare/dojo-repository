@@ -37,6 +37,7 @@ import { UserOrdersComponent } from './component/admin/lists/user-orders/user-or
 import { MatCardModule } from '@angular/material/card';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { MainComponent } from './component/main/main.component';
+import { CreateUserComponent } from './component/admin/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MainComponent } from './component/main/main.component';
     OrderListComponent,
     UserOrdersComponent,
     MainComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoginService } from 'src/app/auth/login/login.service';
-import { Order, UserState } from 'src/app/store/user/user.state';
+import { Order, SingleOrder, UserState } from 'src/app/store/user/user.state';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,7 @@ export class OrderService {
     const id = this.loginService.getUserID();
     const date = new Date();
     const formatData = date.toLocaleDateString('en-US');
+    console.log(order);
 
     console.log(date);
 
