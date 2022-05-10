@@ -1,7 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { last, Observable, Subject } from 'rxjs';
+import { last, Observable, Subject, Subscription } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { IceCream } from 'src/app/models/ice-cream.model';
 import { Unit } from 'src/app/models/units.model';
@@ -41,6 +46,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+
+    this.loginService.getUserOrder().subscribe((res) => {
+      this.orderList = res;
+    });
   }
 
   createForm() {
@@ -72,37 +81,18 @@ export class OrderComponent implements OnInit {
   }
 
   createOrder() {
-    this.loginService.getUserOrder().subscribe((res) => {
-      this.orderList = res;
-    });
-
     this.orderService.addOrder(this.form.value, this.orderList);
     this.router.navigate(['/main']);
   }
 
   replaceOrder() {
-    this.loginService.getUserOrder().subscribe((res) => {
-      this.orderList = res;
-    });
-    console.log(this.orderList);
-
     const lastElement = this.orderList[this.orderList.length - 1];
-
-    // const sortResult = this.orderList.sort(function (a, b) {
-    //   const c = new Date(a.date);
-    //   const d = new Date(b.date);
-    //   return d.getTime() - c.getTime();
-    // });
 
     this.orderService.addOrder(lastElement.order, this.orderList);
     this.router.navigate(['/main']);
   }
 
   validateDate() {
-    this.loginService.getUserOrder().subscribe((res) => {
-      this.orderList = res;
-    });
-
     return (
       this.orderList
         .map((item) => item.date)

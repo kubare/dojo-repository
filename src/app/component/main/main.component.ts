@@ -1,5 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { LoginService } from 'src/app/auth/login/login.service';
 
@@ -9,9 +15,10 @@ import { LoginService } from 'src/app/auth/login/login.service';
   styleUrls: ['./main.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   user$ = this.auth.currentUser$;
   userRole$ = this.loginService.getUserRole();
+  setUserData!: Subscription;
 
   constructor(
     public auth: AuthService,
@@ -20,12 +27,16 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loginService.setUserData().subscribe();
+    this.setUserData = this.loginService.setUserData().subscribe();
   }
 
   logout() {
     this.auth.logout().subscribe(() => {
       this.router.navigate(['login']);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.setUserData.unsubscribe();
   }
 }

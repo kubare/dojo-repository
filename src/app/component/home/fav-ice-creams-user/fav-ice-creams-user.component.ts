@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { map } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { map, Subscription } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { IceCreamFavourtie } from 'src/app/store/user/user.state';
 import { IceCreamsUserService } from '../favourite-ice-cream.service';

@@ -13,8 +13,9 @@
   </ng-container>
 </ng-container>
 
+<div *ngIf="allIceCreams">
 <div *ngFor="let iceCream of allIceCreams">
   {{iceCream.name}}
  {{ allIceCreamsValue.get(iceCream.name) }}
 </div>
-
+</div>

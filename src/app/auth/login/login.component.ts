@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { LoginService } from './login.service';
 
@@ -11,11 +17,12 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
+  login!: Subscription;
 
   constructor(
     private loginService: LoginService,
@@ -37,7 +44,7 @@ export class LoginComponent {
     }
 
     const { email, password } = this.loginForm.value;
-    this.loginService
+    this.login = this.loginService
       .loginToSystem(email, password)
       .pipe(
         this.toast.observe({
@@ -50,5 +57,9 @@ export class LoginComponent {
         this.loginService.setUserID(user.user!.uid);
         this.router.navigate(['main']);
       });
+  }
+
+  ngOnDestroy(): void {
+    this.login.unsubscribe();
   }
 }

@@ -1,6 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Unit } from 'src/app/models/units.model';
 import { UnitsService } from './units.service';
 
@@ -10,16 +15,17 @@ import { UnitsService } from './units.service';
   styleUrls: ['./units.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UnitsComponent implements OnInit {
+export class UnitsComponent implements OnInit, OnDestroy {
   unitInput = new FormControl('');
   displayedColumns: string[] = ['unit', 'actions'];
   public units$: Observable<Unit[]> = this.unitService.getUnitsValueList();
   units!: Unit[];
+  getIdUnits!: Subscription;
 
   constructor(private unitService: UnitsService) {}
 
   ngOnInit() {
-    this.unitService.getUnitsList().subscribe((data) => {
+    this.getIdUnits = this.unitService.getUnitsList().subscribe((data) => {
       this.units = data.map((e) => {
         return {
           id: e.payload.doc.id,
@@ -35,5 +41,9 @@ export class UnitsComponent implements OnInit {
 
   removeUnit(unit: Unit) {
     this.unitService.deleteUnit(unit);
+  }
+
+  ngOnDestroy(): void {
+    this.getIdUnits.unsubscribe();
   }
 }

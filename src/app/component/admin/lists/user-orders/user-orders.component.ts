@@ -39,14 +39,11 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
       .getIceCreamsValueList()
       .subscribe((res) => {
         this.allIceCreams = res;
-        console.log(res);
 
         this.allIceCreams.forEach((element) => {
           this.sumOrderIceCreamValue(element.name);
         });
       });
-
-    this.allIceCreams.forEach((element) => {});
   }
 
   toggleSelect() {
@@ -58,7 +55,6 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
       .getUsersList()
       .pipe(
         map((users) => {
-          console.log(users);
           return users
             .filter((user) => user.role === 'user')
             .flatMap((user) => {
