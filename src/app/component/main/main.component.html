@@ -8,25 +8,28 @@
 </mat-toolbar>
 
 <ng-container *ngIf="userRole$ | async as role">
-  <ng-container *ngIf="role === 'admin'">
-    <button mat-raised-button routerLink="admin/ice-creams">
-      Lody
+  <div *ngIf="user$ | async as user" class="header">
+  <h2>Witaj {{user.email}} :)</h2>
+  </div>
+  <div *ngIf="role === 'admin'" class="main_menu">
+    <button mat-raised-button color="primary" routerLink="admin/ice-creams">
+      Lista lodów
     </button>
-    <button mat-raised-button routerLink="admin/units">
-      Units
+    <button mat-raised-button color="primary" routerLink="admin/units">
+      Lista jednostek
     </button>
-    <button mat-raised-button routerLink="admin/users">
-      Uzytkownicy
+    <button mat-raised-button color="primary" routerLink="admin/users">
+      Lista użytkowników
     </button>
-    <button mat-raised-button routerLink="admin/orders">
-      Zamówienia
+    <button mat-raised-button color="primary" routerLink="admin/orders">
+      Lista zamówień
     </button>
-    <button mat-raised-button routerLink="admin/create-user">
+    <button mat-raised-button color="primary" routerLink="admin/create-user">
       Stworz użytkownika
     </button>
-  </ng-container>
+   </div>
 
-  <ng-container *ngIf="role === 'user'">
+  <div *ngIf="role === 'user'" class="main_menu">
     <button mat-raised-button color="primary" routerLink="home/ice-cream-list">
       Lista lodow
     </button>
@@ -39,7 +42,7 @@
     <button mat-raised-button color="primary" routerLink="home/order-list">
       Wyswietl zamowienie
     </button>
-  </ng-container>
+  </div>
 
 </ng-container>
 

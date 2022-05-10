@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+  font-weight: 500;
+}
+
+.main_menu {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-top: 5px;
+}

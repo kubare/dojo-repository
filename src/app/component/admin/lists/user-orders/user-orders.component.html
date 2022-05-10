@@ -13,5 +13,8 @@
   </ng-container>
 </ng-container>
 
+<div *ngFor="let iceCream of allIceCreams">
+  {{iceCream.name}}
+ {{ allIceCreamsValue.get(iceCream.name) }}
+</div>
 
-<button (click)="sumOrdersValue()">DODAJ</button>

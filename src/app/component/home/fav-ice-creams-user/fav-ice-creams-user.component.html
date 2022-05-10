@@ -1,3 +1,4 @@
+<div class="table__container">
 <table mat-table *ngIf="favsIceCreams$ | async as favs" [dataSource]="favs" class="mat-elevation-z8">
 
   <ng-container matColumnDef="favs">
@@ -17,5 +18,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-
+</div>
 

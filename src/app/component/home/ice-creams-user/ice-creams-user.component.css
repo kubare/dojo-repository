@@ -1,3 +1,9 @@
 table {
   width: 30%;
 }
+
+.table__container {
+  display: flex;
+  justify-content: center;
+  padding: 75px;
+}

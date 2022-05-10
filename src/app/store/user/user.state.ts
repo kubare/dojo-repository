@@ -17,5 +17,5 @@ export interface Order {
 
 export interface SingleOrder {
   name: string;
-  value: number;
+  value: string;
 }
