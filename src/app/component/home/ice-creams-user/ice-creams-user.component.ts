@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { IceCreamFavourtie } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
-import { IceCreamsUserService } from './ice-creams-user.service';
+import { IceCreamsUserService } from '../favourite-ice-cream.service';
 
 @Component({
   selector: 'app-ice-creams-user',
@@ -18,32 +18,31 @@ import { IceCreamsUserService } from './ice-creams-user.service';
 export class IceCreamsUserComponent {
   public iceCreams$ = this.iceCreamService.getIceCreamsValueList();
   displayedColumns: string[] = ['name', 'fav'];
-  inputTest = new FormControl('');
-  favsIceCreamsSUB!: IceCreamFavourtie[];
+  favsIceCreams!: IceCreamFavourtie[];
 
   constructor(
     private iceCreamService: IceCreamService,
-    private icus: IceCreamsUserService,
+    private iceCreamUserService: IceCreamsUserService,
     private loginService: LoginService,
     private cdr: ChangeDetectorRef
   ) {}
 
   addToFavorite(iceCream: IceCreamFavourtie) {
     this.loginService.getFavIceCreams().subscribe((res) => {
-      this.favsIceCreamsSUB = res;
+      this.favsIceCreams = res;
       this.cdr.detectChanges();
     });
 
-    this.icus.addFavIceCreams(iceCream, this.favsIceCreamsSUB);
+    this.iceCreamUserService.addFavIceCreams(iceCream, this.favsIceCreams);
   }
 
   validateAddToFav(iceCream: IceCreamFavourtie) {
     this.loginService.getFavIceCreams().subscribe((res) => {
-      this.favsIceCreamsSUB = res;
+      this.favsIceCreams = res;
     });
 
     return (
-      this.favsIceCreamsSUB.filter((item) => item.name === iceCream.name)
+      this.favsIceCreams.filter((item) => item.name === iceCream.name)
         .length === 0
     );
   }

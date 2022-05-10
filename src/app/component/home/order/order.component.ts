@@ -3,15 +3,12 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { last, Observable, Subject } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
+import { IceCream } from 'src/app/models/ice-cream.model';
+import { Unit } from 'src/app/models/units.model';
 import { Order } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
-import { Unit } from '../../admin/units/units.model';
 import { UnitsService } from '../../admin/units/units.service';
 import { OrderService } from './order.service';
-
-interface IceCream {
-  name: string;
-}
 
 @Component({
   selector: 'app-order',
@@ -59,12 +56,12 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  get orders() {
-    return this.form.get('order') as FormArray;
-  }
-
   addNewIceCream() {
     this.orders.push(this.iceCreamsForm());
+  }
+
+  removeIceCream(i: Required<number>) {
+    this.orders.removeAt(i);
   }
 
   validateForm() {
@@ -72,27 +69,6 @@ export class OrderComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-  }
-
-  validateDate() {
-    this.loginService.getUserOrder().subscribe((res) => {
-      this.orderList = res;
-    });
-
-    return (
-      this.orderList
-        .map((item) => item.date)
-        .filter((date) => this.datesAreOnSameDay(new Date(date), new Date()))
-        .length === 0
-    );
-  }
-
-  datesAreOnSameDay(first: Date, second: Date) {
-    return (
-      first.getFullYear() === second.getFullYear() &&
-      first.getMonth() === second.getMonth() &&
-      first.getDate() === second.getDate()
-    );
   }
 
   createOrder() {
@@ -122,11 +98,32 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/main']);
   }
 
-  removeIceCream(i: Required<number>) {
-    this.orders.removeAt(i);
+  validateDate() {
+    this.loginService.getUserOrder().subscribe((res) => {
+      this.orderList = res;
+    });
+
+    return (
+      this.orderList
+        .map((item) => item.date)
+        .filter((date) => this.datesAreOnSameDay(new Date(date), new Date()))
+        .length === 0
+    );
+  }
+
+  datesAreOnSameDay(first: Date, second: Date) {
+    return (
+      first.getFullYear() === second.getFullYear() &&
+      first.getMonth() === second.getMonth() &&
+      first.getDate() === second.getDate()
+    );
   }
 
   toggleSelect() {
     this.toggle = !this.toggle;
+  }
+
+  get orders() {
+    return this.form.get('order') as FormArray;
   }
 }

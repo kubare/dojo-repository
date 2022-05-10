@@ -12,7 +12,7 @@ import { AuthService } from '../auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService implements OnInit {
+export class LoginService {
   private userID!: string;
 
   constructor(
@@ -20,8 +20,6 @@ export class LoginService implements OnInit {
     private store: Store<AppState>,
     private firebase: AngularFirestore
   ) {}
-
-  ngOnInit(): void {}
 
   registerToSystem(email: string, password: string) {
     this.authService

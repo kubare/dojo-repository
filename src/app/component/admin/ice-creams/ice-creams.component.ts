@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { IceCream } from './ice-cream.model';
+import { IceCream } from '../../../models/ice-cream.model';
 import { IceCreamService } from './ice-cream.service';
 
 @Component({
@@ -11,10 +11,9 @@ import { IceCreamService } from './ice-cream.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IceCreamsComponent implements OnInit {
-  iceCreamInput = new FormControl('');
   iceCreams!: IceCream[];
-
   displayedColumns: string[] = ['name', 'actions'];
+  iceCreamInput = new FormControl('');
   public iceCreams$ = this.iceCreamService.getIceCreamsList();
 
   constructor(private iceCreamService: IceCreamService) {}

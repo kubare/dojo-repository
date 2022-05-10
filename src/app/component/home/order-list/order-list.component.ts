@@ -9,10 +9,8 @@ import { Order } from 'src/app/store/user/user.state';
   styleUrls: ['./order-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderListComponent implements OnInit {
+export class OrderListComponent {
   public orderList$: Observable<Order[]> = this.loginService.getUserOrder();
 
   constructor(private loginService: LoginService) {}
-
-  ngOnInit(): void {}
 }

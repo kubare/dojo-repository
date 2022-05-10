@@ -1,3 +1,4 @@
-export interface IceCreamFav {
+export interface IceCream {
+  id?: string;
   name: string;
 }

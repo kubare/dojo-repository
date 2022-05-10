@@ -11,20 +11,17 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
-  roleUser: any;
 
   constructor(
     private loginService: LoginService,
     private router: Router,
     private toast: HotToastService
   ) {}
-
-  ngOnInit(): void {}
 
   get email() {
     return this.loginForm.get('email');

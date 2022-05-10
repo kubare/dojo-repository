@@ -1,5 +1,5 @@
-<br><button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">Zamowienia użytkowników</button>
-<br><button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Zamówienia dzisiejsze</button>
+<br><button (click)="toggleSelect()" [disabled]="!toggleButton" mat-raised-button color="primary">Zamowienia użytkowników</button>
+<br><button (click)="toggleSelect()" [disabled]="toggleButton" mat-raised-button color="primary">Zamówienia dzisiejsze</button>
 
 <ng-container *ngFor="let item of users$ | async">
   <ng-container *ngFor="let singleOrder of item.orders">

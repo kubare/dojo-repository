@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Unit } from './units.model';
+import { Unit } from 'src/app/models/units.model';
 import { UnitsService } from './units.service';
 
 @Component({

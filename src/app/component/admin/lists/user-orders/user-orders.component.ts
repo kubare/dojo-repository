@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { User } from 'firebase/auth';
 import { map, Observable, switchMap } from 'rxjs';
 import { UserState } from 'src/app/store/user/user.state';
-import { IceCream } from '../../ice-creams/ice-cream.model';
+import { IceCream } from '../../../../models/ice-cream.model';
 import { IceCreamService } from '../../ice-creams/ice-cream.service';
 import { UserListService } from '../user-list/user-list.service';
 
@@ -13,7 +12,7 @@ import { UserListService } from '../user-list/user-list.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserOrdersComponent {
-  toggle: boolean = true;
+  toggleButton: boolean = true;
   public users$: Observable<UserState[]> = this.userListService.getUsersList();
   public iceCreams$: Observable<IceCream[]> =
     this.iceCreamService.getIceCreamsValueList();
@@ -28,7 +27,7 @@ export class UserOrdersComponent {
   ) {}
 
   toggleSelect() {
-    this.toggle = !this.toggle;
+    this.toggleButton = !this.toggleButton;
   }
 
   sumOrdersValue() {
