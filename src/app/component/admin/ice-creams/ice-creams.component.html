@@ -2,12 +2,28 @@
   <div class="ic__form">
     <mat-form-field class="example-full-width" >
       <mat-label>Nazwa loda</mat-label>
-      <input matInput type="text" [formControl]="iceCreamInput" required minLength="3"/>
-      <div *ngIf="iceCreamInput.errors?.['minLength']">
-        Name must be at least 5 characters long.
-      </div>
+      <input matInput type="text" [formControl]="iceCreamInput" required minlength="3" maxlength="20" />
+
+      <mat-error *ngIf="iceCreamInput.invalid && (iceCreamInput.dirty || iceCreamInput.touched)">
+        <mat-error *ngIf="iceCreamInput.errors?.['required']">
+          Podaj nazwe
+        </mat-error>
+        <mat-error *ngIf="iceCreamInput.errors?.['minlength']">
+          Minimum 3 znaki
+        </mat-error>
+        <mat-error *ngIf="iceCreamInput.errors?.['maxlength']">
+          Maksymalnie 20 znaków
+        </mat-error>
+        <mat-error *ngIf="iceCreamInput.errors?.['pattern']">
+          Zle znaki
+        </mat-error>
+        <mat-error *ngIf="iceCreamInput.hasError('whitespace')">
+          Specjalnie dla Ciebie Kamil zablokowane :)
+        </mat-error>
+      </mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="addIceCream()">Dodaj louda</button>
+
+    <button mat-raised-button color="primary" (click)="addIceCream()" type="submit">Dodaj louda</button>
   </div>
 
   <div class="ic__table">

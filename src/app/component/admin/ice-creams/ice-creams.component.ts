@@ -20,11 +20,14 @@ export class IceCreamsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'actions'];
   iceCreamInput = new FormControl('', [
     Validators.minLength(3),
+    Validators.maxLength(20),
     Validators.required,
+    Validators.pattern('^[a-zA-Z ]*$'),
+    this.noWhitespaceValidator,
   ]);
   getIdIceCream!: Subscription;
 
-  public iceCreams$ = this.iceCreamService.getIceCreamsList();
+  public iceCreams$ = this.iceCreamService.getIceCreamsValueList();
 
   constructor(private iceCreamService: IceCreamService) {}
 
@@ -42,11 +45,22 @@ export class IceCreamsComponent implements OnInit, OnDestroy {
   }
 
   addIceCream() {
+    this.iceCreamInput.markAllAsTouched();
+    if (this.iceCreamInput.invalid) {
+      return;
+    }
+
     this.iceCreamService.createIceCreamProduct(this.iceCreamInput.value);
   }
 
   removeIceCream(iceCream: IceCream) {
     this.iceCreamService.deleteIceCreamProduct(iceCream);
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { whitespace: true };
   }
 
   ngOnDestroy(): void {
