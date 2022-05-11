@@ -38,6 +38,7 @@ import { MatCardModule } from '@angular/material/card';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { MainComponent } from './component/main/main.component';
 import { CreateUserComponent } from './component/admin/create-user/create-user.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { CreateUserComponent } from './component/admin/create-user/create-user.c
     MatSelectModule,
     MatCardModule,
     MatInputModule,
+    ToastrModule.forRoot(),
     HotToastModule.forRoot(),
     StoreModule.forRoot<AppState>({
       user: userReducer,

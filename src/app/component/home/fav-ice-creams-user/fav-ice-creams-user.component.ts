@@ -8,6 +8,7 @@ import { map, Subscription } from 'rxjs';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { IceCreamFavourtie } from 'src/app/store/user/user.state';
 import { IceCreamsUserService } from '../favourite-ice-cream.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-fav-ice-creams-user',
@@ -22,7 +23,8 @@ export class FavIceCreamsUserComponent {
 
   constructor(
     private loginService: LoginService,
-    private iceCreamUserService: IceCreamsUserService
+    private iceCreamUserService: IceCreamsUserService,
+    private toastr: ToastrService
   ) {}
 
   deleteFromFavorite(iceCream: IceCreamFavourtie) {
@@ -30,5 +32,6 @@ export class FavIceCreamsUserComponent {
       this.favsIceCreams = res;
     });
     this.iceCreamUserService.removeFavIceCreams(iceCream, this.favsIceCreams);
+    this.toastr.info('Usunięto z ulubionych!');
   }
 }

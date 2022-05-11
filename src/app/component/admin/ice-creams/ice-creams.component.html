@@ -1,10 +1,17 @@
-<mat-form-field class="example-full-width" >
-  <mat-label>Nazwa loda</mat-label>
-  <input matInput type="text" [formControl]="iceCreamInput" />
-</mat-form-field>
-<button mat-raised-button color="primary" (click)="addIceCream()">Dodaj</button>
+<div class="ic__view">
+  <div class="ic__form">
+    <mat-form-field class="example-full-width" >
+      <mat-label>Nazwa loda</mat-label>
+      <input matInput type="text" [formControl]="iceCreamInput" required minLength="3"/>
+      <div *ngIf="iceCreamInput.errors?.['minLength']">
+        Name must be at least 5 characters long.
+      </div>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addIceCream()">Dodaj louda</button>
+  </div>
 
-<table *ngIf="iceCreams$ | async as iceCream" mat-table [dataSource]="iceCreams" class="mat-elevation-z8">
+  <div class="ic__table">
+  <table *ngIf="iceCreams$ | async as iceCream" mat-table [dataSource]="iceCreams" class="mat-elevation-z8">
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
@@ -25,3 +32,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>
+</div>

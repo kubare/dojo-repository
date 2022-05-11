@@ -4,7 +4,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { IceCream } from '../../../models/ice-cream.model';
 import { IceCreamService } from './ice-cream.service';
@@ -18,7 +18,10 @@ import { IceCreamService } from './ice-cream.service';
 export class IceCreamsComponent implements OnInit, OnDestroy {
   iceCreams!: IceCream[];
   displayedColumns: string[] = ['name', 'actions'];
-  iceCreamInput = new FormControl('');
+  iceCreamInput = new FormControl('', [
+    Validators.minLength(3),
+    Validators.required,
+  ]);
   getIdIceCream!: Subscription;
 
   public iceCreams$ = this.iceCreamService.getIceCreamsList();

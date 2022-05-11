@@ -30,6 +30,7 @@
     "firebase": "^9.7.0",
     "http-server": "^14.1.0",
     "json-server": "^0.17.0",
+    "ngx-toastr": "^14.3.0",
     "rxjs": "~7.5.0",
     "server": "^1.0.37",
     "tslib": "^2.3.0",

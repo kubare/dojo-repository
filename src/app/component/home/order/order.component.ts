@@ -14,6 +14,7 @@ import { Order } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
 import { UnitsService } from '../../admin/units/units.service';
 import { OrderService } from './order.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order',
@@ -41,7 +42,8 @@ export class OrderComponent implements OnInit {
     private unitService: UnitsService,
     private orderService: OrderService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -81,6 +83,7 @@ export class OrderComponent implements OnInit {
 
     this.orderService.addOrder(this.form.value, this.orderList);
     this.router.navigate(['/main']);
+    this.toastr.success('Złozono zamówienie!');
   }
 
   replaceOrder() {
@@ -88,6 +91,7 @@ export class OrderComponent implements OnInit {
 
     this.orderService.addOrder(lastElement.order, this.orderList);
     this.router.navigate(['/main']);
+    this.toastr.success('Złozono zamówienie!');
   }
 
   validateDate() {

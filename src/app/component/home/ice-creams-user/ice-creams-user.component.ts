@@ -4,8 +4,7 @@ import {
   Component,
   OnDestroy,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { LoginService } from 'src/app/auth/login/login.service';
 import { IceCreamFavourtie } from 'src/app/store/user/user.state';
 import { IceCreamService } from '../../admin/ice-creams/ice-cream.service';
@@ -26,7 +25,8 @@ export class IceCreamsUserComponent {
     private iceCreamService: IceCreamService,
     private iceCreamUserService: IceCreamsUserService,
     private loginService: LoginService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toastr: ToastrService
   ) {}
 
   addToFavorite(iceCream: IceCreamFavourtie) {
@@ -36,6 +36,7 @@ export class IceCreamsUserComponent {
     });
 
     this.iceCreamUserService.addFavIceCreams(iceCream, this.favsIceCreams);
+    this.toastr.success('Dodano do ulubionych!');
   }
 
   validateAddToFav(iceCream: IceCreamFavourtie) {
