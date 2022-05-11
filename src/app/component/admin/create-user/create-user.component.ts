@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/auth/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-user',
@@ -20,11 +21,12 @@ export class CreateUserComponent {
     ]),
   });
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   createUserAccount() {
     const { email, password } = this.createUserForm.value;
     this.loginService.registerToSystem(email, password);
+    this.router.navigate(['main']);
   }
 
   get email() {

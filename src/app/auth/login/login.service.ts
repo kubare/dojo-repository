@@ -1,6 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map } from '@firebase/util';
 import { Store } from '@ngrx/store';
 import { switchMap, tap } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
