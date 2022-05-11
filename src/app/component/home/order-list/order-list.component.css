@@ -1,9 +1,16 @@
 .order_list {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  padding-top: 25px;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
 }
 
 .mat_card {
-  width: 35%;
+  width: 20%;
+  margin: 0 auto;
 }

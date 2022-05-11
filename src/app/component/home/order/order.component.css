@@ -26,3 +26,10 @@
   max-width: 300px;
   margin: 0 auto;
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+}
