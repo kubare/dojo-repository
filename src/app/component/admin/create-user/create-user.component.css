@@ -1,0 +1,6 @@
+.create__form {
+  display: flex;
+  justify-content: center;
+  padding-top: 45px;
+  gap: 20px 20px;
+}

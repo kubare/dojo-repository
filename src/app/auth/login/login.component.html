@@ -1,6 +1,7 @@
 <div class="form-container mat-elevation-z5">
   <div class="form-header">
     <img
+    class="form-header__img"
       src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Blackpink_Ice_Cream_-_logo.png"
       alt="Envelo" />
   </div>
@@ -27,7 +28,7 @@
     </mat-form-field>
     </div>
     <div class="btn-label">
-      <button mat-raised-button color="primary" type="submit">Login</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!toggleButton">Login</button>
     </div>
   </form>
 </div>

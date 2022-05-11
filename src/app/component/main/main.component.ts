@@ -33,6 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
   logout() {
     this.auth.logout().subscribe(() => {
       this.router.navigate(['login']);
+      window.location.reload();
     });
   }
 

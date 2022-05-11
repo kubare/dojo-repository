@@ -1,29 +1,26 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  align-items: center;
   border: 1px solid rgb(224, 224, 224);
   border-radius: 16px;
-  padding: 75px;
+  padding: 35px;
 }
 
-.form-header {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
+.form-header__img {
+  height: 100%;
+  max-width: 100%;
 }
 
 .form {
   padding-top: 40px;
-}
-
-.example-full-width {
-  width: 400px;
 }
 
 .email-label {
@@ -33,10 +30,11 @@
 .btn-label {
   padding-top: 10px;
 }
+@media screen and (min-width: 600px) {
+}
 
 @media only screen and (max-width: 600px) {
   .form-container {
-    height: 100%;
     width: 100%;
   }
 }

@@ -23,6 +23,7 @@ export class LoginComponent implements OnDestroy {
     password: new FormControl('', [Validators.required]),
   });
   login!: Subscription;
+  toggleButton: boolean = true;
 
   constructor(
     private loginService: LoginService,
@@ -57,6 +58,8 @@ export class LoginComponent implements OnDestroy {
         this.loginService.setUserID(user.user!.uid);
         this.router.navigate(['main']);
       });
+
+    this.toggleButton = false;
   }
 
   ngOnDestroy(): void {

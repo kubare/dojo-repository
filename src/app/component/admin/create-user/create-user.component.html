@@ -1,6 +1,31 @@
-<form [formGroup]="createUserForm" (ngSubmit)="createUserAccount()">
-  <input type="email" formControlName="email" /><br>
-  <input type="password" formControlName="password" />
+<div class="create__form">
+  <form [formGroup]="createUserForm" (ngSubmit)="createUserAccount()">
 
-  <button type="submit">Create</button>
-</form>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="jacek.kowalski@test.com" required>
+      <mat-error *ngIf="email && email.invalid && (email.dirty || email.touched)">
+      <mat-error *ngIf="email.errors?.['required']">
+        Podaj email
+      </mat-error>
+      <mat-error *ngIf="email.errors?.['pattern']">
+        Podaj poprawny email
+      </mat-error>
+      </mat-error>
+    </mat-form-field><br>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Haslo</mat-label>
+      <input matInput type="password" formControlName="password" required minlength="4">
+      <mat-error *ngIf="password && password.invalid && (password.dirty || password.touched)">
+        <mat-error *ngIf="password.errors?.['required']">
+          Podaj hasło
+        </mat-error>
+        <mat-error *ngIf="password.errors?.['minlength']">
+          Haslo musi posiadac minimum 4 znaki
+        </mat-error>
+        </mat-error>
+    </mat-form-field><br>
+
+    <button mat-raised-button color="primary" type="submit">Stworz usera</button>
+  </form>
+</div>
