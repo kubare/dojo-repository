@@ -60,8 +60,8 @@ export class OrderComponent implements OnInit {
 
   iceCreamsForm() {
     return this.fb.group({
-      name: [null, Validators.required],
-      value: [null, Validators.required],
+      name: ['', Validators.required],
+      value: ['', Validators.required],
     });
   }
 
@@ -73,14 +73,12 @@ export class OrderComponent implements OnInit {
     this.orders.removeAt(i);
   }
 
-  validateForm() {
+  createOrder() {
     this.form.markAllAsTouched();
     if (this.form.invalid) {
       return;
     }
-  }
 
-  createOrder() {
     this.orderService.addOrder(this.form.value, this.orderList);
     this.router.navigate(['/main']);
   }

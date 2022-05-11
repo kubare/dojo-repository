@@ -1,9 +1,14 @@
-<p>order-list works!</p>
+<div class="order_list">
+  <h1>Twoje zamówienia</h1>
 
-<div *ngFor="let singleOrder of orderList$ | async">
-  {{singleOrder.date}}
-  <div *ngFor="let orderDetails of singleOrder.order">
-  {{orderDetails.name}}
-  {{orderDetails.value}} kg
+  <div *ngFor="let singleOrder of orderList$ | async">
+
+<mat-card class="mat_card">
+      {{singleOrder.date}}
+      <div *ngFor="let orderDetails of singleOrder.order">
+      {{orderDetails.name}}
+      {{orderDetails.value}} kg
+    </div>
+</mat-card>
 </div>
 </div>

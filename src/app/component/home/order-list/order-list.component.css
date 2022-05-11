@@ -1,0 +1,9 @@
+.order_list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mat_card {
+  width: 35%;
+}

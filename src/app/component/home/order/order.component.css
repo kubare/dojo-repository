@@ -1,0 +1,28 @@
+.form__order {
+  display: flex;
+  flex-direction: column;
+  padding: 45px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.example-button-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.btn_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  max-width: 300px;
+  margin: 0 auto;
+}
