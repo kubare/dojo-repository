@@ -44,8 +44,6 @@ export class UserOrdersComponent implements OnInit, OnDestroy {
           this.sumOrderIceCreamValue(element.name);
         });
       });
-
-    console.log(this.allIceCreamsValue);
   }
 
   toggleSelect() {

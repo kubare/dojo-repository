@@ -16,7 +16,7 @@ import { LoginService } from 'src/app/auth/login/login.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainComponent implements OnInit, OnDestroy {
-  user$ = this.auth.currentUser$;
+  userEmail$ = this.loginService.getUserEmail();
   userRole$ = this.loginService.getUserRole();
   setUserData!: Subscription;
 

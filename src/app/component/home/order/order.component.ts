@@ -26,7 +26,7 @@ export class OrderComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   orderList!: Order[];
-  toggle: boolean = true;
+  toggleButton: boolean = true;
 
   public iceCreams$: Observable<IceCream[]> =
     this.iceCreamService.getIceCreamsValueList();
@@ -89,7 +89,7 @@ export class OrderComponent implements OnInit {
   replaceOrder() {
     const lastElement = this.orderList[this.orderList.length - 1];
 
-    this.orderService.addOrder(lastElement.order, this.orderList);
+    this.orderService.addOrder(lastElement, this.orderList);
     this.router.navigate(['/main']);
     this.toastr.success('Złozono zamówienie!');
   }
@@ -112,7 +112,7 @@ export class OrderComponent implements OnInit {
   }
 
   toggleSelect() {
-    this.toggle = !this.toggle;
+    this.toggleButton = !this.toggleButton;
   }
 
   get orders() {

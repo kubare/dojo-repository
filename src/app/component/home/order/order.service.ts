@@ -12,11 +12,10 @@ export class OrderService {
     private afs: AngularFirestore
   ) {}
 
-  addOrder(order: any, list: Order[]) {
+  addOrder(order: Order, list: Order[]) {
     const id = this.loginService.getUserID();
     const date = new Date();
     const formatData = date.toLocaleDateString('en-US');
-    console.log(order);
 
     this.afs.doc<UserState>(`users/${id}`).update({
       orders: [...list, { ...order, date: formatData }],

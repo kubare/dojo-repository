@@ -9,7 +9,7 @@
     <div class="email-label">
       <mat-form-field class="example-full-width" >
         <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" />
+        <input matInput type="email" formControlName="email" (focus)="onFocus()" />
         <mat-error *ngIf="email?.errors?.['required']">
           Wprowadź email
         </mat-error>
@@ -21,14 +21,14 @@
     <div class="password-label">
     <mat-form-field class="example-full-width">
       <mat-label>Haslo</mat-label>
-      <input matInput type="password" formControlName="password" />
+      <input matInput type="password" formControlName="password" (focus)="onFocus()" />
       <mat-error *ngIf="password?.errors?.['required']">
         Wprowadź hasło
       </mat-error>
     </mat-form-field>
     </div>
     <div class="btn-label">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!toggleButton">Login</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="toggleButton">Login</button>
     </div>
   </form>
 </div>

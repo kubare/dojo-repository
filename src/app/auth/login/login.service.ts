@@ -80,7 +80,10 @@ export class LoginService {
 
   setUserID(id: string) {
     this.userID = id;
-    console.log(this.userID);
+  }
+
+  getUserEmail() {
+    return this.store.select((state) => state.user.email);
   }
 
   getUserID() {

@@ -22,7 +22,7 @@ export class IceCreamsComponent implements OnInit, OnDestroy {
     Validators.minLength(3),
     Validators.maxLength(20),
     Validators.required,
-    Validators.pattern('^[a-zA-Z ]*$'),
+    Validators.pattern('^[A-Z]+[a-zA-Z]*$'),
     this.noWhitespaceValidator,
   ]);
   getIdIceCream!: Subscription;

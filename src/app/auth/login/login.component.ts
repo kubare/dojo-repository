@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   OnDestroy,
   OnInit,
+  ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,7 +25,8 @@ export class LoginComponent implements OnDestroy {
     password: new FormControl('', [Validators.required]),
   });
   login!: Subscription;
-  toggleButton: boolean = true;
+  toggleButton: boolean = false;
+  @ViewChild('emailInput') loginInputs!: ElementRef;
 
   constructor(
     private loginService: LoginService,
@@ -59,6 +62,10 @@ export class LoginComponent implements OnDestroy {
         this.router.navigate(['main']);
       });
 
+    this.toggleButton = true;
+  }
+
+  onFocus() {
     this.toggleButton = false;
   }
 

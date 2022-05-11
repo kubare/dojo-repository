@@ -2,8 +2,8 @@
 <ng-container *ngIf="validateDate(); else formOrder">
 
   <div class="btn_header">
-  <button (click)="toggleSelect()" [disabled]="!toggle" mat-raised-button color="primary">List ulubionych</button>
-  <button (click)="toggleSelect()" [disabled]="toggle" mat-raised-button color="primary">Lista wszystkich dostępnych</button>
+  <button (click)="toggleSelect()" [disabled]="!toggleButton" mat-raised-button color="primary">List ulubionych</button>
+  <button (click)="toggleSelect()" [disabled]="toggleButton" mat-raised-button color="primary">Lista wszystkich dostępnych</button>
   </div>
 
   <div class="form-container">
@@ -17,7 +17,7 @@
           </div>
 
           <div class="body" [formGroupName]="i">
-              <div *ngIf="toggle; else favList">
+              <div *ngIf="toggleButton; else favList">
                 <h3>Wszystkie dostepne lody</h3>
                 <label for="ingredientName">Nazwa lodów</label><br>
                 <mat-form-field appearance="fill">
@@ -63,12 +63,12 @@
           <mat-icon>add</mat-icon>
         </button>
       </div>
-      <div class="btn-section">
+      <div class="btn-section" *ngIf="orderList">
         <button mat-stroked-button color="primary" type="submit">Stworz zamówienie</button>
-        <button (click)="replaceOrder()" mat-stroked-button color="primary">Powtorz zamowienie</button>
+        <button (click)="replaceOrder()" [disabled]="orderList.length === 0" mat-stroked-button color="primary">Powtorz zamowienie</button>
       </div>
-
     </form>
+
   </div>
 </ng-container>
 

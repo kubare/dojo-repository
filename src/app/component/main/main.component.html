@@ -8,8 +8,8 @@
 </mat-toolbar>
 
 <ng-container *ngIf="userRole$ | async as role">
-  <div *ngIf="user$ | async as user" class="header">
-  <h2>Witaj {{user.email}} :)</h2>
+  <div *ngIf="userEmail$ | async as user" class="header">
+  <h2>Witaj {{user}} :)</h2>
   </div>
   <div *ngIf="role === 'admin'" class="main_menu">
     <button mat-raised-button color="primary" routerLink="admin/ice-creams">

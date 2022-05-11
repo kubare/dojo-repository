@@ -27,7 +27,7 @@
     </div>
     <div *ngIf="allIceCreams">
       <div class="today__orders" *ngFor="let iceCream of allIceCreams">
-        <mat-card  *ngIf="allIceCreamsValue.get(iceCream.name) !== 0">
+        <mat-card *ngIf="allIceCreamsValue.get(iceCream.name) !== 0">
         {{iceCream.name}}
         <b>{{ allIceCreamsValue.get(iceCream.name) }} kg</b>
         </mat-card>

@@ -20,7 +20,7 @@ export class UnitsComponent implements OnInit, OnDestroy {
     Validators.minLength(1),
     Validators.maxLength(5),
     Validators.required,
-    Validators.pattern('^[0-9]*$'),
+    Validators.pattern('^[1-9][0-9]*$'),
     Validators.min(1),
     Validators.max(30),
     this.noWhitespaceValidator,
