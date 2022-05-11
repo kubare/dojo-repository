@@ -3,5 +3,33 @@ table {
 }
 
 mat-card {
-  width: 40%;
+  width: 20%;
+  margin: 0 auto;
+}
+
+.user__order {
+  padding-top: 25px;
+}
+
+.btn__header {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.all__orders {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.today__orders {
+  gap: 10px;
 }

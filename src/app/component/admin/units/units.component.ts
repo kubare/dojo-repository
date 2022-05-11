@@ -4,7 +4,7 @@ import {
   OnDestroy,
   OnInit,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Unit } from 'src/app/models/units.model';
 import { UnitsService } from './units.service';
@@ -16,7 +16,15 @@ import { UnitsService } from './units.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnitsComponent implements OnInit, OnDestroy {
-  unitInput = new FormControl('');
+  unitInput = new FormControl('', [
+    Validators.minLength(1),
+    Validators.maxLength(5),
+    Validators.required,
+    Validators.pattern('^[0-9]*$'),
+    Validators.min(1),
+    Validators.max(30),
+    this.noWhitespaceValidator,
+  ]);
   displayedColumns: string[] = ['unit', 'actions'];
   public units$: Observable<Unit[]> = this.unitService.getUnitsValueList();
   units!: Unit[];
@@ -35,12 +43,23 @@ export class UnitsComponent implements OnInit, OnDestroy {
     });
   }
 
-  addIceCream() {
+  addUnit() {
+    this.unitInput.markAllAsTouched();
+    if (this.unitInput.invalid) {
+      return;
+    }
+
     this.unitService.createUnit(this.unitInput.value);
   }
 
   removeUnit(unit: Unit) {
     this.unitService.deleteUnit(unit);
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { whitespace: true };
   }
 
   ngOnDestroy(): void {

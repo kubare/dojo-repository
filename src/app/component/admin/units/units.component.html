@@ -1,9 +1,32 @@
+<div class="unit__form">
 <mat-form-field class="example-full-width" >
   <mat-label>Ilość kg</mat-label>
-  <input matInput type="text" [formControl]="unitInput" />
+  <input matInput type="text" [formControl]="unitInput" required minlength="1" maxlength="5"/>
+  <mat-error *ngIf="unitInput.invalid && (unitInput.dirty || unitInput.touched)">
+    <mat-error *ngIf="unitInput.errors?.['required']">
+      Podaj nazwe
+    </mat-error>
+    <mat-error *ngIf="unitInput.errors?.['minlength']">
+      Minimum 3 znaki
+    </mat-error>
+    <mat-error *ngIf="unitInput.errors?.['maxlength']">
+      Maksymalnie 20 znaków
+    </mat-error>
+    <mat-error *ngIf="unitInput.errors?.['pattern']">
+      Zle znaki
+    </mat-error>
+    <mat-error *ngIf="unitInput.errors?.['min']">
+      Minimalnie możesz podać 1kg
+    </mat-error>
+    <mat-error *ngIf="unitInput.errors?.['max']">
+      Maksymalnie możesz wyprodukować 30kg
+    </mat-error>
+  </mat-error>
 </mat-form-field>
-<button mat-raised-button color="primary" (click)="addIceCream()">Dodaj</button>
+<button mat-raised-button color="primary" (click)="addUnit()">Dodaj unit</button>
+</div>
 
+<div class="unit__table">
 <table *ngIf="units$ | async as unit" mat-table [dataSource]="units" class="mat-elevation-z8">
 
   <!-- Name Column -->
@@ -27,3 +50,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>

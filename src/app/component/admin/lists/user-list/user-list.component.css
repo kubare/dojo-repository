@@ -1,3 +1,9 @@
 table {
   width: 75%;
 }
+
+.table__users {
+  display: flex;
+  justify-content: center;
+  padding-top: 45px;
+}

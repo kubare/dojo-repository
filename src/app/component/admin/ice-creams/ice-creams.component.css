@@ -2,12 +2,6 @@ table {
   width: 25%;
 }
 
-.ic__list {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .ic__form {
   display: flex;
   flex-direction: row;

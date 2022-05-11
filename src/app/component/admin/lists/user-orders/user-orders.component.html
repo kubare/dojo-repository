@@ -1,21 +1,37 @@
-<br><button (click)="toggleSelect()" [disabled]="!toggleButton" mat-raised-button color="primary">Zamowienia użytkowników</button>
-<br><button (click)="toggleSelect()" [disabled]="toggleButton" mat-raised-button color="primary">Zamówienia dzisiejsze</button>
+<div class="user__order">
+  <div class="btn__header">
+    <button (click)="toggleSelect()" [disabled]="toggleButton" mat-raised-button color="primary">Zamowienia użytkowników</button>
+    <button (click)="toggleSelect()" [disabled]="!toggleButton" mat-raised-button color="primary">Zamowienia dzisiejsze</button>
+  </div>
 
-<ng-container *ngFor="let item of users$ | async">
-  <ng-container *ngFor="let singleOrder of item.orders">
-    <ng-container *ngFor="let orderDetails of singleOrder.order">
-          <mat-card>
-            {{item.email}}<br>
-            {{singleOrder.date}}<br>
-            {{orderDetails.name}} - {{orderDetails.value}} kg
-          </mat-card>
+  <div class="all__orders" *ngIf="toggleButton; else sumValueOrder">
+    <div class="header">
+      <h2>Zamówienia użytkowników</h2>
+    </div>
+    <ng-container *ngFor="let item of users$ | async">
+      <ng-container *ngFor="let singleOrder of item.orders">
+        <ng-container *ngFor="let orderDetails of singleOrder.order">
+              <mat-card>
+                <b>{{item.email}}</b><br>
+                {{singleOrder.date}}<br>
+                {{orderDetails.name}} - {{orderDetails.value}} kg
+              </mat-card>
+        </ng-container>
+      </ng-container>
     </ng-container>
-  </ng-container>
-</ng-container>
+  </div>
 
-<div *ngIf="allIceCreams">
-<div *ngFor="let iceCream of allIceCreams">
-  {{iceCream.name}}
- {{ allIceCreamsValue.get(iceCream.name) }}
-</div>
+  <ng-template #sumValueOrder>
+    <div class="header">
+      <h2>Zamówienia dzisiejsze</h2>
+    </div>
+    <div *ngIf="allIceCreams">
+      <div class="today__orders" *ngFor="let iceCream of allIceCreams">
+        <mat-card  *ngIf="allIceCreamsValue.get(iceCream.name) !== 0">
+        {{iceCream.name}}
+        <b>{{ allIceCreamsValue.get(iceCream.name) }} kg</b>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
 </div>

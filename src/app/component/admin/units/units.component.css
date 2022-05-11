@@ -1,3 +1,18 @@
 table {
   width: 25%;
 }
+
+.unit__form {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  margin: 0 auto;
+  gap: 10px;
+  padding-top: 25px;
+}
+
+.unit__table {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
